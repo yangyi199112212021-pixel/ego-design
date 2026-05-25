@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ego and ... | Project</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="detail-page">
+    <header class="detail-header" aria-label="Project navigation">
+      <a class="detail-brand" href="index.html#projects">ego and ...</a>
+      <nav class="detail-actions">
+        <a class="detail-admin" href="admin.html#projects-admin">Edit</a>
+        <a class="detail-close" href="index.html#projects">Close</a>
+      </nav>
+    </header>
+
+    <main class="detail-template">
+      <section class="detail-intro" aria-labelledby="detail-title">
+        <div class="detail-title-block">
+          <p class="detail-eyebrow" data-detail-group></p>
+          <h1 id="detail-title" data-detail-project-title></h1>
+        </div>
+        <dl class="detail-meta">
+          <div>
+            <dt>Category</dt>
+            <dd data-detail-category></dd>
+          </div>
+          <div>
+            <dt>Client</dt>
+            <dd data-detail-client></dd>
+          </div>
+          <div>
+            <dt>Year</dt>
+            <dd data-detail-year></dd>
+          </div>
+        </dl>
+        <p class="detail-description" data-detail-description></p>
+      </section>
+
+      <section class="detail-gallery" data-detail-gallery aria-label="Project images"></section>
+    </main>
+
+    <script src="site-data.js"></script>
+    <script src="site.js"></script>
+  </body>
+</html>

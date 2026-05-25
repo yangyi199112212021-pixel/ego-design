@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Admin</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <aside class="admin-side">
+        <a class="admin-brand" href="index.html">ego and ...</a>
+        <p>作品集后台</p>
+        <nav class="admin-nav" aria-label="Admin sections">
+          <a href="#global">全站</a>
+          <a href="#about-admin">个人信息</a>
+          <a href="#navigation">导航</a>
+          <a href="#tags">分类</a>
+          <a href="#hero-images">首页图片</a>
+          <a href="#group-logos">项目组 Logo</a>
+          <a href="#projects-admin">项目</a>
+        </nav>
+        <div class="admin-actions">
+          <button type="submit" form="admin-form">保存</button>
+          <button type="button" data-preview>预览首页</button>
+          <button type="button" data-reset>恢复默认</button>
+        </div>
+        <p class="admin-status" data-status>修改后点击保存。</p>
+      </aside>
+
+      <form class="admin-form" id="admin-form">
+        <section class="admin-panel" id="global">
+          <div class="panel-head">
+            <h1>全站模块</h1>
+            <span>Hero / Projects</span>
+          </div>
+          <div class="field-grid">
+            <label>
+              首页大标题
+              <input name="siteTitle" type="text" />
+            </label>
+            <label>
+              项目区粗体标题
+              <input name="projectsTitleStrong" type="text" />
+            </label>
+            <label>
+              项目区细体标题
+              <input name="projectsTitleLight" type="text" />
+            </label>
+            <label>
+              Logo 图片路径
+              <input name="logoUrl" type="text" />
+            </label>
+            <label>
+              上传 Logo
+              <input data-global-upload="logoUrl" type="file" accept="image/*" />
+            </label>
+          </div>
+        </section>
+
+        <section class="admin-panel" id="about-admin">
+          <div class="panel-head">
+            <h2>个人信息</h2>
+            <button type="button" data-add-about-block>添加区块</button>
+          </div>
+          <div class="field-grid">
+            <label class="wide-field">
+              底部大标题
+              <input name="aboutTitle" type="text" />
+            </label>
+          </div>
+          <div class="project-editor-list about-editor-list" data-about-list></div>
+        </section>
+
+        <section class="admin-panel" id="navigation">
+          <div class="panel-head">
+            <h2>导航按钮</h2>
+            <button type="button" data-add-nav>添加</button>
+          </div>
+          <div class="repeat-list" data-nav-list></div>
+        </section>
+
+        <section class="admin-panel" id="tags">
+          <div class="panel-head">
+            <h2>分类跑马灯</h2>
+            <button type="button" data-add-tag>添加</button>
+          </div>
+          <div class="repeat-list" data-tag-list></div>
+        </section>
+
+        <section class="admin-panel" id="hero-images">
+          <div class="panel-head">
+            <h2>首页图片模块</h2>
+            <button type="button" data-add-hero-image>添加图片</button>
+          </div>
+          <div class="image-editor-list" data-hero-image-list></div>
+        </section>
+
+        <section class="admin-panel" id="group-logos">
+          <div class="panel-head">
+            <h2>项目组 Logo</h2>
+            <button type="button" data-add-group-logo>添加 Logo</button>
+          </div>
+          <div class="repeat-list" data-group-logo-list></div>
+        </section>
+
+        <section class="admin-panel" id="projects-admin">
+          <div class="panel-head">
+            <h2>项目模块</h2>
+            <button type="button" data-add-project>添加项目</button>
+          </div>
+          <div class="project-editor-list" data-project-list></div>
+        </section>
+      </form>
+    </main>
+
+    <template id="nav-template">
+      <div class="repeat-row">
+        <input data-key="label" type="text" placeholder="主文字" />
+        <input data-key="sublabel" type="text" placeholder="小文字" />
+        <button type="button" data-remove>删除</button>
+      </div>
+    </template>
+
+    <template id="tag-template">
+      <div class="repeat-row">
+        <input data-key="tag" type="text" placeholder="🎨 # visual identity" />
+        <button type="button" data-remove>删除</button>
+      </div>
+    </template>
+
+    <template id="about-template">
+      <article class="project-editor about-editor">
+        <div class="project-editor-head">
+          <h3 data-about-name>信息区块</h3>
+          <button type="button" data-remove-about-block>删除区块</button>
+        </div>
+        <div class="field-grid">
+          <label>
+            所在列
+            <select data-key="column">
+              <option value="0">左列</option>
+              <option value="1">右列</option>
+            </select>
+          </label>
+          <label>
+            标题
+            <input data-key="heading" type="text" />
+          </label>
+          <label class="wide-field">
+            正文
+            <textarea data-key="body" rows="6"></textarea>
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <template id="hero-image-template">
+      <article class="image-editor">
+        <div class="image-editor-preview">
+          <img data-preview-img alt="" />
+        </div>
+        <div class="image-editor-fields">
+          <div class="project-editor-head">
+            <h3 data-image-name>图片模块</h3>
+            <button type="button" data-remove-hero-image>删除图片</button>
+          </div>
+          <div class="field-grid">
+            <label>
+              模块 ID
+              <input data-key="id" type="text" />
+            </label>
+            <label>
+              模块名称
+              <input data-key="name" type="text" />
+            </label>
+            <label class="wide-field">
+              图片路径 / 上传结果
+              <input data-key="image" type="text" />
+            </label>
+            <label>
+              单独上传图片
+              <input data-upload type="file" accept="image/*" />
+            </label>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <template id="group-logo-template">
+      <div class="repeat-row group-logo-row">
+        <input data-key="group" type="text" placeholder="项目组标签，比如 yqsl" />
+        <input data-key="image" type="text" placeholder="Logo 图片路径 / 上传结果" />
+        <input data-group-logo-upload type="file" accept="image/*" />
+        <button type="button" data-remove>删除</button>
+      </div>
+    </template>
+
+    <template id="project-template">
+      <article class="project-editor">
+        <div class="project-editor-head">
+          <h3 data-project-name>项目</h3>
+          <button type="button" data-remove-project>删除项目</button>
+        </div>
+        <div class="field-grid">
+          <label>
+            项目 ID
+            <input data-key="id" type="text" />
+          </label>
+          <label>
+            项目标题
+            <input data-key="title" type="text" />
+          </label>
+          <label>
+            项目组标签
+            <input data-key="group" type="text" placeholder="Haagen-Dazs" />
+          </label>
+          <label>
+            分类
+            <input data-key="category" type="text" />
+          </label>
+          <label>
+            客户
+            <input data-key="client" type="text" />
+          </label>
+          <label>
+            年份
+            <input data-key="year" type="text" />
+          </label>
+          <label>
+            卡片日期
+            <input data-key="date" type="text" placeholder="2026.5.21" />
+          </label>
+          <label class="wide-field">
+            卡片说明文案
+            <textarea data-key="summary" rows="3" placeholder="「项目说明文案」"></textarea>
+          </label>
+          <label>
+            首页卡片图片路径
+            <input data-key="image" type="text" />
+          </label>
+          <label>
+            上传卡片图片
+            <input data-project-upload="image" type="file" accept="image/*" />
+          </label>
+          <label>
+            悬停视频路径
+            <input data-key="hoverVideo" type="text" />
+          </label>
+          <label>
+            上传悬停视频
+            <input data-video-upload="hoverVideo" type="file" accept="video/mp4,video/webm,video/quicktime" />
+          </label>
+          <label>
+            详情页主图路径
+            <input data-key="detailBackground" type="text" />
+          </label>
+          <label>
+            上传详情主图
+            <input data-project-upload="detailBackground" type="file" accept="image/*" />
+          </label>
+          <div class="wide-field detail-images-editor">
+            <div class="detail-images-head">
+              <strong>详情页图片组</strong>
+              <button type="button" data-add-detail-image>添加详情图</button>
+            </div>
+            <div data-detail-image-list></div>
+          </div>
+          <label>
+            详情页粗体标题
+            <input data-key="detailTitleStrong" type="text" />
+          </label>
+          <label>
+            详情页细体标题
+            <input data-key="detailTitleLight" type="text" />
+          </label>
+          <label>
+            详情页小标题
+            <input data-key="detailKicker" type="text" />
+          </label>
+          <label class="wide-field">
+            详情页文案
+            <textarea data-key="detailDescription" rows="4"></textarea>
+          </label>
+          <label class="check-field">
+            <input data-key="showDetailText" type="checkbox" />
+            显示详情页文字层
+          </label>
+        </div>
+      </article>
+    </template>
+
+    <template id="detail-image-template">
+      <div class="detail-image-row">
+        <input data-detail-image-path type="text" placeholder="详情页图片路径" />
+        <input data-detail-image-upload type="file" accept="image/*" />
+        <button type="button" data-remove-detail-image>删除</button>
+      </div>
+    </template>
+
+    <script src="site-data.js"></script>
+    <script src="site.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

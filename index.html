@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ego and ... | Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="ego and home">
+        <img src="assets/logo2.png" alt="ego and ..." />
+        <span data-active-project-group></span>
+        <img class="brand-group-image" data-active-project-group-image alt="" />
+      </a>
+      <nav class="nav-pills" data-nav-pills aria-label="Portfolio navigation"></nav>
+    </header>
+
+    <section class="about-panel" id="about" aria-hidden="true">
+      <div class="about-grid" data-about-grid></div>
+      <button class="about-close" type="button" data-about-close>Close</button>
+      <div class="about-title" data-about-title>About ...</div>
+    </section>
+
+    <section class="contact-panel" id="contact" aria-hidden="true">
+      <button class="contact-close" type="button" data-contact-close>Close</button>
+      <div class="contact-content">
+        <h2>Contact</h2>
+        <p>微信 wechat：yy461504935</p>
+        <p>电话 phone：15316113948</p>
+      </div>
+    </section>
+
+    <main id="top">
+      <section class="hero" aria-label="Selected work objects">
+        <div class="object-field" data-hero-image-grid aria-label="Hero image modules"></div>
+      </section>
+
+      <section class="projects" id="projects" aria-labelledby="projects-title">
+        <div class="projects-head" aria-hidden="true">
+          <h1 id="projects-title">
+            <strong data-field="projectsTitleStrong">ego and ...</strong>
+            <span data-field="projectsTitleLight">hagendas</span>
+          </h1>
+          <img data-logo src="assets/haagen-logo.svg" alt="Project logo" />
+        </div>
+
+        <div class="ticker ticker-projects" aria-label="Categories">
+          <div class="ticker-track" data-tags></div>
+        </div>
+
+        <div class="project-groups" data-project-grid></div>
+      </section>
+    </main>
+
+    <script src="site-data.js"></script>
+    <script src="site.js"></script>
+  </body>
+</html>
