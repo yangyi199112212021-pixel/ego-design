@@ -107,7 +107,12 @@
         <section class="admin-panel" id="projects-admin">
           <div class="panel-head">
             <h2>项目模块</h2>
-            <button type="button" data-add-project>添加项目</button>
+            <div class="project-panel-actions">
+              <select data-project-jump aria-label="选择要编辑的项目">
+                <option value="">选择项目</option>
+              </select>
+              <button type="button" data-add-project>添加项目</button>
+            </div>
           </div>
           <div class="project-editor-list" data-project-list></div>
         </section>
@@ -173,6 +178,10 @@
             <label>
               模块名称
               <input data-key="name" type="text" />
+            </label>
+            <label>
+              关联项目 ID
+              <input data-key="projectId" type="text" placeholder="比如 ice-cream" />
             </label>
             <label class="wide-field">
               图片路径 / 上传结果

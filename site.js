@@ -46,6 +46,52 @@
       .replaceAll('"', "&quot;");
   }
 
+  function isVideo(src) {
+    return /\.(mp4|webm|mov)(\?.*)?$/i.test(String(src || ""));
+  }
+
+  function projectInitials(project) {
+    const source = project.title || project.group || "Work";
+    return source
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase();
+  }
+
+  function heroProjectId(item, data, index) {
+    const explicitId = item.projectId || item.workId || item.project || "";
+    if (data.projects.some((project) => project.id === explicitId)) {
+      return explicitId;
+    }
+    if (data.projects.some((project) => project.id === item.id)) {
+      return item.id;
+    }
+    return data.projects.length ? data.projects[index % data.projects.length].id : "";
+  }
+
+  function createMediaNode(src, alt, className) {
+    if (!src) return null;
+    if (isVideo(src)) {
+      const video = document.createElement("video");
+      video.className = className;
+      video.src = src;
+      video.muted = true;
+      video.playsInline = true;
+      video.loop = true;
+      video.controls = true;
+      video.preload = "metadata";
+      return video;
+    }
+    const image = document.createElement("img");
+    image.className = className;
+    image.src = src;
+    image.alt = alt || "";
+    return image;
+  }
+
   function renderTags(data) {
     document.querySelectorAll("[data-tags]").forEach((track) => {
       track.innerHTML = "";
@@ -83,15 +129,26 @@
 
           const track = document.createElement("div");
           track.className = "hero-image-track";
-          const laneItems = items.filter((_, index) => index % laneCount === laneIndex);
+          const laneItems = items
+            .map((item, index) => ({ item, index }))
+            .filter((entry) => entry.index % laneCount === laneIndex);
           const imageSet = [...laneItems, ...laneItems, ...laneItems];
 
-          imageSet.forEach((item) => {
+          imageSet.forEach((entry) => {
+            const item = entry.item;
+            const projectId = heroProjectId(item, data, entry.index);
+            const link = document.createElement(projectId ? "a" : "span");
+            link.className = "hero-image-link";
+            if (projectId) {
+              link.href = `project.html?work=${encodeURIComponent(projectId)}`;
+              link.setAttribute("aria-label", `Open ${item.name || "project"}`);
+            }
             const image = document.createElement("img");
             image.className = "hero-image-module";
             image.src = item.image;
             image.alt = item.name || "";
-            track.appendChild(image);
+            link.appendChild(image);
+            track.appendChild(link);
           });
 
           lane.appendChild(track);
@@ -157,13 +214,20 @@
         group.projects.forEach((project) => {
           const card = document.createElement("a");
           card.className = "project-card";
+          if (!project.image) {
+            card.classList.add("has-empty-media");
+          }
           card.href = `project.html?work=${encodeURIComponent(project.id)}`;
           const video = project.hoverVideo
             ? `<video class="project-card-video" src="${escapeHtml(project.hoverVideo)}" muted playsinline loop preload="none"></video>`
             : "";
           card.innerHTML = `
             <span class="project-media">
-              <img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}">
+              ${
+                project.image
+                  ? `<img src="${escapeHtml(project.image)}" alt="${escapeHtml(project.title)}">`
+                  : `<span class="project-placeholder" aria-hidden="true">${escapeHtml(projectInitials(project))}</span>`
+              }
               ${video}
             </span>
             <span class="project-title">${escapeHtml(project.title)}</span>
@@ -268,6 +332,35 @@
     });
   }
 
+  function setupDetailMediaReveal() {
+    const mediaItems = document.querySelectorAll(".detail-gallery-media");
+    if (!mediaItems.length) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+      mediaItems.forEach((media) => media.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+        rootMargin: "0px 0px -10% 0px"
+      }
+    );
+
+    mediaItems.forEach((media, index) => {
+      media.style.transitionDelay = `${Math.min(index, 3) * 80}ms`;
+      observer.observe(media);
+    });
+  }
+
   function renderDetail(data) {
     const template = document.querySelector(".detail-template");
     if (!template) return;
@@ -282,7 +375,7 @@
       text("[data-detail-project-title]", project.title || "");
       text("[data-detail-category]", project.category || "");
       text("[data-detail-client]", project.client || "");
-      text("[data-detail-year]", project.year || "");
+      text("[data-detail-year]", project.year || project.date || "");
       text("[data-detail-description]", project.detailDescription || project.summary || "");
 
       const gallery = document.querySelector("[data-detail-gallery]");
@@ -293,12 +386,20 @@
           ? project.detailImages
           : [project.detailBackground];
         const images = sourceImages.filter((src) => src && src !== defaultDetailImage);
-        [...new Set(images)].forEach((src) => {
-          const image = document.createElement("img");
-          image.src = src;
-          image.alt = project.title || "";
-          gallery.appendChild(image);
+        const uniqueImages = [...new Set(images)];
+        template.classList.toggle("has-empty-gallery", !uniqueImages.length);
+        uniqueImages.forEach((src) => {
+          const media = createMediaNode(src, project.title, "detail-gallery-media");
+          if (media) {
+            gallery.appendChild(media);
+          }
         });
+        if (!uniqueImages.length) {
+          const empty = document.createElement("div");
+          empty.className = "detail-empty";
+          empty.innerHTML = `<span>${escapeHtml(projectInitials(project))}</span><p>Project images coming soon.</p>`;
+          gallery.appendChild(empty);
+        }
       }
     }
   }
@@ -397,6 +498,7 @@
   renderDetail(data);
   setupHeaderScroll();
   setupProjectReveal();
+  setupDetailMediaReveal();
   setupAboutPanel();
   setupContactPanel();
 })();
