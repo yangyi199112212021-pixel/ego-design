@@ -6,6 +6,7 @@
   const heroImageList = document.querySelector("[data-hero-image-list]");
   const groupLogoList = document.querySelector("[data-group-logo-list]");
   const projectList = document.querySelector("[data-project-list]");
+  const projectJump = document.querySelector("[data-project-jump]");
   const status = document.querySelector("[data-status]");
   let data = PortfolioData.getData();
 
@@ -69,6 +70,21 @@
     }
     const result = await response.json();
     return result.path;
+  }
+
+  async function saveDataFile(nextData) {
+    if (window.location.protocol === "file:") {
+      return false;
+    }
+    const response = await fetch("/save-data", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(nextData)
+    });
+    if (!response.ok) {
+      throw new Error("Save data failed");
+    }
+    return true;
   }
 
   function readRawUpload(file, callback) {
@@ -139,6 +155,7 @@
     const defaults = {
       id: `hero-image-${Date.now()}`,
       name: "New image",
+      projectId: "",
       image: "assets/hero-film.png"
     };
     const imageItem = { ...defaults, ...item };
@@ -198,7 +215,43 @@
     editor.querySelector("[data-detail-image-list]").appendChild(row);
   }
 
-  function addProject(project) {
+  function projectEditors() {
+    return Array.from(projectList.querySelectorAll(".project-editor"));
+  }
+
+  function projectLabel(editor, index) {
+    const title = editor.querySelector('[data-key="title"]')?.value.trim();
+    const id = editor.querySelector('[data-key="id"]')?.value.trim();
+    const group = editor.querySelector('[data-key="group"]')?.value.trim();
+    const name = title || id || `项目 ${index + 1}`;
+    return group ? `${index + 1}. ${name} / ${group}` : `${index + 1}. ${name}`;
+  }
+
+  function refreshProjectJump(selectedEditor) {
+    if (!projectJump) return;
+    const editors = projectEditors();
+    const selectedIndex = selectedEditor ? editors.indexOf(selectedEditor) : Number(projectJump.value);
+    projectJump.innerHTML = '<option value="">选择项目</option>';
+    editors.forEach((editor, index) => {
+      editor.dataset.projectIndex = String(index);
+      const option = document.createElement("option");
+      option.value = String(index);
+      option.textContent = projectLabel(editor, index);
+      projectJump.appendChild(option);
+    });
+    if (selectedIndex >= 0 && selectedIndex < editors.length) {
+      projectJump.value = String(selectedIndex);
+    }
+  }
+
+  function scrollToProject(editor) {
+    if (!editor) return;
+    editor.scrollIntoView({ behavior: "smooth", block: "start" });
+    editor.classList.add("is-targeted");
+    window.setTimeout(() => editor.classList.remove("is-targeted"), 1200);
+  }
+
+  function addProject(project, options = {}) {
     const defaults = {
       id: `project-${Date.now()}`,
       group: "Haagen-Dazs",
@@ -236,6 +289,7 @@
       field.addEventListener("input", () => {
         editor.querySelector("[data-project-name]").textContent =
           editor.querySelector('[data-key="title"]').value || editor.querySelector('[data-key="id"]').value || "项目";
+        refreshProjectJump(editor);
       });
     });
     editor.querySelectorAll("[data-project-upload]").forEach((upload) => {
@@ -262,8 +316,15 @@
         });
       });
     });
-    editor.querySelector("[data-remove-project]").addEventListener("click", () => editor.remove());
+    editor.querySelector("[data-remove-project]").addEventListener("click", () => {
+      editor.remove();
+      refreshProjectJump();
+    });
     projectList.appendChild(editor);
+    refreshProjectJump(editor);
+    if (options.scroll) {
+      scrollToProject(editor);
+    }
   }
 
   function render() {
@@ -282,6 +343,10 @@
     data.heroImages.forEach(addHeroImage);
     (data.groupLogos || []).forEach(addGroupLogo);
     data.projects.forEach(addProject);
+    refreshProjectJump();
+    if (projectJump) {
+      projectJump.value = "";
+    }
   }
 
   function collect() {
@@ -304,6 +369,7 @@
       heroImages: Array.from(heroImageList.querySelectorAll(".image-editor")).map((editor) => ({
         id: editor.querySelector('[data-key="id"]').value.trim(),
         name: editor.querySelector('[data-key="name"]').value.trim(),
+        projectId: editor.querySelector('[data-key="projectId"]').value.trim(),
         image: editor.querySelector('[data-key="image"]').value.trim()
       })),
       groupLogos: Array.from(groupLogoList.querySelectorAll(".group-logo-row")).map((row) => ({
@@ -342,14 +408,15 @@
     return next;
   }
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     data = collect();
     try {
       PortfolioData.saveData(data);
-      setStatus("已保存。刷新首页或详情页即可看到更新。");
+      const savedFile = await saveDataFile(data);
+      setStatus(savedFile ? "已保存到 site-data.js。刷新首页或详情页即可看到更新。" : "已保存到当前浏览器。通过本地服务器打开后台可同步到文件。");
     } catch (error) {
-      setStatus("保存失败：图片还是太大。请换更小的图片，或减少已上传图片数量。");
+      setStatus("保存失败：请确认本地服务器仍在运行，或减少已上传图片数量。");
     }
   });
 
@@ -358,7 +425,12 @@
   document.querySelector("[data-add-about-block]").addEventListener("click", () => addAboutBlock());
   document.querySelector("[data-add-hero-image]").addEventListener("click", () => addHeroImage());
   document.querySelector("[data-add-group-logo]").addEventListener("click", () => addGroupLogo());
-  document.querySelector("[data-add-project]").addEventListener("click", () => addProject());
+  document.querySelector("[data-add-project]").addEventListener("click", () => addProject(undefined, { scroll: true }));
+
+  projectJump?.addEventListener("change", () => {
+    const index = Number(projectJump.value);
+    scrollToProject(projectEditors()[index]);
+  });
 
   document.querySelectorAll("[data-global-upload]").forEach((upload) => {
     upload.addEventListener("change", (event) => {
