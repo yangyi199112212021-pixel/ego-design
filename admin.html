@@ -107,7 +107,12 @@
         <section class="admin-panel" id="projects-admin">
           <div class="panel-head">
             <h2>项目模块</h2>
-            <button type="button" data-add-project>添加项目</button>
+            <div class="project-panel-actions">
+              <select data-project-jump aria-label="选择要编辑的项目">
+                <option value="">选择项目</option>
+              </select>
+              <button type="button" data-add-project>添加项目</button>
+            </div>
           </div>
           <div class="project-editor-list" data-project-list></div>
         </section>
@@ -173,6 +178,10 @@
             <label>
               模块名称
               <input data-key="name" type="text" />
+            </label>
+            <label>
+              关联项目 ID
+              <input data-key="projectId" type="text" placeholder="比如 ice-cream" />
             </label>
             <label class="wide-field">
               图片路径 / 上传结果
@@ -251,11 +260,11 @@
             上传悬停视频
             <input data-video-upload="hoverVideo" type="file" accept="video/mp4,video/webm,video/quicktime" />
           </label>
-          <label>
+          <label class="hidden-admin-field">
             详情页主图路径
             <input data-key="detailBackground" type="text" />
           </label>
-          <label>
+          <label class="hidden-admin-field">
             上传详情主图
             <input data-project-upload="detailBackground" type="file" accept="image/*" />
           </label>
@@ -292,8 +301,18 @@
 
     <template id="detail-image-template">
       <div class="detail-image-row">
+        <div class="admin-thumb">
+          <img data-detail-image-preview alt="" />
+        </div>
         <input data-detail-image-path type="text" placeholder="详情页图片路径" />
+        <select data-detail-image-width aria-label="详情图宽度">
+          <option value="full">整行</option>
+          <option value="half">1/2 宽</option>
+          <option value="third">1/3 宽</option>
+        </select>
         <input data-detail-image-upload type="file" accept="image/*" />
+        <button type="button" data-move-detail-image-up>上移</button>
+        <button type="button" data-move-detail-image-down>下移</button>
         <button type="button" data-remove-detail-image>删除</button>
       </div>
     </template>
