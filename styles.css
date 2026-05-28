@@ -325,11 +325,11 @@ body.contact-open {
 
 .ticker-track {
   display: flex;
-  gap: clamp(34px, 4.8vw, 72px);
+  gap: clamp(27px, 3.84vw, 58px);
   align-items: center;
   width: max-content;
   padding: 0 74px;
-  font-size: 18px;
+  font-size: 14.4px;
   line-height: 1.2;
   font-weight: 700;
   white-space: nowrap;
@@ -363,7 +363,7 @@ body.contact-open {
 .ticker-track span {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .object-field {
