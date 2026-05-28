@@ -32,6 +32,26 @@ function sendJson(response, status, data) {
   response.end(JSON.stringify(data));
 }
 
+function readJsonBody(request, maxSize, callback) {
+  const chunks = [];
+  let size = 0;
+  request.on("data", (chunk) => {
+    size += chunk.length;
+    if (size > maxSize) {
+      request.destroy();
+      return;
+    }
+    chunks.push(chunk);
+  });
+  request.on("end", () => {
+    try {
+      callback(null, JSON.parse(Buffer.concat(chunks).toString("utf8")));
+    } catch (error) {
+      callback(error);
+    }
+  });
+}
+
 function extensionForType(type) {
   if (type.includes("png")) return ".png";
   if (type.includes("jpeg") || type.includes("jpg")) return ".jpg";
@@ -47,19 +67,12 @@ fs.mkdirSync(uploadDir, { recursive: true });
 
 const server = http.createServer((request, response) => {
   if (request.method === "POST" && request.url === "/upload") {
-    const chunks = [];
-    let size = 0;
-    request.on("data", (chunk) => {
-      size += chunk.length;
-      if (size > 120 * 1024 * 1024) {
-        request.destroy();
-        return;
-      }
-      chunks.push(chunk);
-    });
-    request.on("end", () => {
+    readJsonBody(request, 120 * 1024 * 1024, (error, body) => {
       try {
-        const body = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+        if (error) {
+          sendJson(response, 400, { error: "Invalid upload data." });
+          return;
+        }
         const match = String(body.dataUrl || "").match(/^data:([^;]+);base64,(.+)$/);
         if (!match) {
           sendJson(response, 400, { error: "Invalid upload data." });
@@ -70,9 +83,27 @@ const server = http.createServer((request, response) => {
         const filePath = path.join(uploadDir, name);
         fs.writeFileSync(filePath, Buffer.from(match[2], "base64"));
         sendJson(response, 200, { path: `assets/uploads/${name}` });
-      } catch (error) {
+      } catch (uploadError) {
         sendJson(response, 500, { error: "Upload failed." });
       }
+    });
+    return;
+  }
+
+  if (request.method === "POST" && request.url === "/save-data") {
+    readJsonBody(request, 8 * 1024 * 1024, (error, body) => {
+      if (error || !body || typeof body !== "object" || Array.isArray(body)) {
+        sendJson(response, 400, { error: "Invalid portfolio data." });
+        return;
+      }
+      const content = `window.PORTFOLIO_DEFAULT_DATA = ${JSON.stringify(body, null, 2)};\n`;
+      fs.writeFile(path.join(root, "site-data.js"), content, "utf8", (writeError) => {
+        if (writeError) {
+          sendJson(response, 500, { error: "Could not save portfolio data." });
+          return;
+        }
+        sendJson(response, 200, { ok: true });
+      });
     });
     return;
   }
