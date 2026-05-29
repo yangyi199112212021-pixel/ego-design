@@ -31,6 +31,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
   ],
   "about": {
     "title": "About ...",
+    "photo": "assets/uploads/1780054967184-rb7dnne5gv9.jpg",
     "columns": [
       [
         {
@@ -72,8 +73,8 @@ window.PORTFOLIO_DEFAULT_DATA = {
     {
       "id": "tea",
       "name": "Tea bottle",
-      "projectId": "",
-      "image": "assets/uploads/1779774396867-z8fhsgse41.webp"
+      "projectId": "project-1779563456548",
+      "image": "assets/uploads/1780050968246-7hgl9165dgl.webp"
     },
     {
       "id": "hero-image-1779561989805",
@@ -91,7 +92,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "id": "hero-image-1779562773636",
       "name": "New image",
       "projectId": "project-1779563455574",
-      "image": "assets/uploads/1779874584033-wewwm7odaeb.webp"
+      "image": "assets/uploads/1780060759061-djf47ohhadv.webp"
     },
     {
       "id": "hero-image-1779562951793",
@@ -198,13 +199,13 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "year": "",
       "date": "2026",
       "summary": "为哈根达斯端午节制作限定礼盒",
-      "image": "assets/card-2.png",
-      "hoverVideo": "assets/uploads/1779695571154-ps3q25gezoi.mp4",
+      "image": "assets/uploads/1779982947922-5aq4nzgdjom.jpg",
+      "hoverVideo": "",
       "detailBackground": "assets/uploads/1779640715051-rfmiif7358j.webp",
       "detailTitleStrong": "ego and...",
       "detailTitleLight": "hagendas",
       "detailKicker": "PLUSH TOY",
-      "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit",
+      "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit\n我们试着让我们的口味们放低一点，但他们就是控制不了。它们是饮料货架上最亮的泡泡，是冰箱里闪闪发光的星星。他们提供水果包装的爆米花，大声而自豪，我们凭什么阻止他们？",
       "showDetailText": false,
       "detailImages": [
         {
@@ -226,6 +227,10 @@ window.PORTFOLIO_DEFAULT_DATA = {
         {
           "src": "assets/uploads/1779850290938-73e5d9hljc.webp",
           "width": "third"
+        },
+        {
+          "src": "assets/uploads/1780040451871-rexodg7ziqr.jpg",
+          "width": "third"
         }
       ]
     },
@@ -238,13 +243,13 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "year": "",
       "date": "2026",
       "summary": "「コロンビア·ピクチャーズ」の名作映画7タイトルとのコラボレ一ションアイテム全16種類を発壳!",
-      "image": "assets/uploads/1779952091641-lv99m80rk6.png",
+      "image": "assets/uploads/1780062484989-cmdvfe5rtxh.png",
       "hoverVideo": "",
       "detailBackground": "assets/uploads/1779695298874-jlyk7ezzlpr.webp",
       "detailTitleStrong": "ego and...",
       "detailTitleLight": "hagendas",
       "detailKicker": "PLUSH TOY",
-      "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit",
+      "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit\n我们试着让我们的口味们放低一点，但他们就是控制不了。它们是饮料货架上最亮的泡泡，是冰箱里闪闪发光的星星。他们提供水果包装的爆米花，大声而自豪，我们凭什么阻止他们？",
       "showDetailText": false,
       "detailImages": [
         {
@@ -252,24 +257,20 @@ window.PORTFOLIO_DEFAULT_DATA = {
           "width": "full"
         },
         {
-          "src": "assets/uploads/1779949882553-fp7vqzr8gyv.png",
+          "src": "assets/uploads/1780069071289-tahuptczhw.jpg",
           "width": "half"
         },
         {
-          "src": "assets/uploads/1779949553742-ecsy3x1fdp.png",
+          "src": "assets/uploads/1780067764059-idyihcak7pr.jpg",
           "width": "half"
         },
         {
-          "src": "assets/uploads/1779939154305-d731hfu8eqv.png",
-          "width": "third"
+          "src": "assets/uploads/1780069603731-2i9t8i97v0h.jpg",
+          "width": "half"
         },
         {
-          "src": "assets/uploads/1779939156469-ttduebtslkl.png",
-          "width": "third"
-        },
-        {
-          "src": "assets/uploads/1779939158669-kz4h0bvp7go.png",
-          "width": "third"
+          "src": "assets/uploads/1780068237624-nresrph54tr.jpg",
+          "width": "half"
         }
       ]
     },
@@ -282,7 +283,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "year": "2023",
       "date": "2023",
       "summary": "从0到1创建气泡水视觉语言体系>根据传递乐观和健康的生活方式且做一个有温度的品牌的策略",
-      "image": "assets/uploads/1779603807049-kiorzar5rb9.webp",
+      "image": "assets/uploads/1780067949411-v9ee9jgz4l8.jpg",
       "hoverVideo": "",
       "detailBackground": "assets/uploads/1779636819375-0tio6ubw8yj.webp",
       "detailTitleStrong": "ego and ...",
@@ -292,19 +293,23 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "showDetailText": true,
       "detailImages": [
         {
-          "src": "assets/uploads/1779864382336-40qjgch1yla.jpg",
+          "src": "assets/uploads/1780048527130-eaxd8639uiv.jpg",
           "width": "full"
         },
         {
-          "src": "assets/uploads/1779864384864-wy7pp47186g.jpg",
-          "width": "full"
-        },
-        {
-          "src": "assets/uploads/1779961188041-8f3wgf9weg6.jpg",
+          "src": "assets/uploads/1780048529644-3faeks03bv5.jpg",
           "width": "full"
         },
         {
           "src": "assets/uploads/1779951527411-t8p8q309mp.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780063667545-g82w3w0iwy6.png",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780062108121-81l0p9fq04w.jpg",
           "width": "full"
         },
         {
@@ -328,14 +333,29 @@ window.PORTFOLIO_DEFAULT_DATA = {
           "width": "full"
         },
         {
-          "src": "assets/uploads/1779849648834-zr2v5skgh5l.webp",
-          "width": "full"
-        },
-        {
           "src": "assets/uploads/1779849662623-9hrkxjr7xq6.webp",
           "width": "full"
         }
       ]
+    },
+    {
+      "id": "project-1780064030054",
+      "title": "元气森林种地吧少年",
+      "group": "YQSL",
+      "category": "poster",
+      "client": "Client",
+      "year": "2023",
+      "date": "2023.5.21",
+      "summary": "",
+      "image": "assets/uploads/1780064527435-egoask2ikkc.jpg",
+      "hoverVideo": "",
+      "detailBackground": "",
+      "detailTitleStrong": "",
+      "detailTitleLight": "",
+      "detailKicker": "PLUSH TOY",
+      "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit\n我们试着让我们的口味们放低一点，但他们就是控制不了。它们是饮料货架上最亮的泡泡，是冰箱里闪闪发光的星星。他们提供水果包装的爆米花，大声而自豪，我们凭什么阻止他们？",
+      "showDetailText": true,
+      "detailImages": []
     },
     {
       "id": "project-1779563456548",
@@ -345,19 +365,59 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "client": "Client",
       "year": "",
       "date": "2026",
-      "summary": "从0到1创建气泡水视觉语言体系>根据传递乐观和健康的生活方式且做一个有温度的品牌的策略",
-      "image": "assets/uploads/1779781781345-cunxmihbkd.webp",
+      "summary": "从0到1创建元气森林纤茶视觉语言体系",
+      "image": "assets/uploads/1780062753428-84eshtgsxyh.jpg",
       "hoverVideo": "",
       "detailBackground": "assets/project-detail-hero.png",
       "detailTitleStrong": "ego and ...",
       "detailTitleLight": "hagendas",
       "detailKicker": "PLUSH TOY",
-      "detailDescription": "",
+      "detailDescription": "针对元气森林纤茶的品牌视觉升级，我们不仅重新定义了品牌主视觉，\n使其更加贴合中式审美的风格，还对全渠道包括POSM/电商/品牌拍摄\n等进行了创新设计，以增强消费者互动体验，不仅提升了产品的市场竞\n争力，也让消费者在享受健康饮品的同时，感受到元气森林所倡导的活\n力和乐趣。通过这些创新的视觉设计，能够进一步拉近与消费者的距离\n，激发市场活力，让元气森林气泡水成为更多人的选择。In order to upgrade the brand vision of Jinqi Forest fiber tea, we not only redefined \nthe main vision of the brand, making it more suitable for the Chinese aesthetic style, \nbut also made innovative designs on the omni-channel including POSM/ e-commer\u0002ce/brand shooting, so as to enhance the interactive experience of consumers, not \nonly enhance the market competitiveness of the product, but also let consumers \nenjoy healthy drinks at the same time. Feel the vitality and fun advocated by the \nVitality Forest. Through these innovative visual designs, we can further narrow the \ndistance with consumers, stimulate the vitality of the market, and make the vitality of \nforest sparkling water the choice of more people.",
       "showDetailText": true,
       "detailImages": [
         {
-          "src": "assets/project-detail-hero.png",
+          "src": "assets/uploads/1780062864247-zrosrwiod0s.jpg",
           "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780051624365-92gx1ub9hg4.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780055128208-28dp73h3fbz.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780059404839-9kfbq2haf6i.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780051071522-j16zdwwv6ma.jpg",
+          "width": "half"
+        },
+        {
+          "src": "assets/uploads/1780051200338-pct5gwym2m.jpg",
+          "width": "half"
+        },
+        {
+          "src": "assets/uploads/1780053594782-b1j59dklwio.jpg",
+          "width": "half"
+        },
+        {
+          "src": "assets/uploads/1780050453779-nxsiug9vt8r.jpg",
+          "width": "half"
+        },
+        {
+          "src": "assets/uploads/1780045224353-2bfxtj9g686.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780056774267-mz07jld2b2a.jpg",
+          "width": "half"
+        },
+        {
+          "src": "assets/uploads/1780058485638-a3nzkco9gl5.jpg",
+          "width": "half"
         }
       ]
     },
@@ -376,7 +436,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailTitleStrong": "ego and ...",
       "detailTitleLight": "hagendas",
       "detailKicker": "PLUSH TOY",
-      "detailDescription": "",
+      "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit\n我们试着让我们的口味们放低一点，但他们就是控制不了。它们是饮料货架上最亮的泡泡，是冰箱里闪闪发光的星星。他们提供水果包装的爆米花，大声而自豪，我们凭什么阻止他们？",
       "showDetailText": true,
       "detailImages": [
         {
@@ -428,7 +488,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailTitleStrong": "",
       "detailTitleLight": "",
       "detailKicker": "PLUSH TOY",
-      "detailDescription": "",
+      "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit\n我们试着让我们的口味们放低一点，但他们就是控制不了。它们是饮料货架上最亮的泡泡，是冰箱里闪闪发光的星星。他们提供水果包装的爆米花，大声而自豪，我们凭什么阻止他们？",
       "showDetailText": true,
       "detailImages": [
         {
@@ -460,7 +520,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailTitleStrong": "",
       "detailTitleLight": "",
       "detailKicker": "PLUSH TOY",
-      "detailDescription": "",
+      "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit\n我们试着让我们的口味们放低一点，但他们就是控制不了。它们是饮料货架上最亮的泡泡，是冰箱里闪闪发光的星星。他们提供水果包装的爆米花，大声而自豪，我们凭什么阻止他们？",
       "showDetailText": true,
       "detailImages": [
         {

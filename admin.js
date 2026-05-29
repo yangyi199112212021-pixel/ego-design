@@ -24,6 +24,7 @@
     input("projectsTitleLight").value = data.projectsTitleLight;
     input("logoUrl").value = data.logoUrl;
     input("aboutTitle").value = data.about?.title || "About ...";
+    input("aboutPhoto").value = data.about?.photo || "assets/about-photo.jpg";
   }
 
   function addNavRow(item = { label: "", sublabel: "" }) {
@@ -404,6 +405,20 @@
       editor.remove();
       refreshProjectJump();
     });
+    editor.querySelector("[data-move-project-up]").addEventListener("click", () => {
+      const previous = editor.previousElementSibling;
+      if (!previous) return;
+      projectList.insertBefore(editor, previous);
+      refreshProjectJump(editor);
+      setStatus("项目顺序已调整，点击保存后生效。");
+    });
+    editor.querySelector("[data-move-project-down]").addEventListener("click", () => {
+      const next = editor.nextElementSibling;
+      if (!next) return;
+      projectList.insertBefore(next, editor);
+      refreshProjectJump(editor);
+      setStatus("项目顺序已调整，点击保存后生效。");
+    });
     addFieldPreview("image");
     addFieldPreview("detailBackground");
     projectList.appendChild(editor);
@@ -450,6 +465,7 @@
         .filter(Boolean),
       about: {
         title: input("aboutTitle").value.trim(),
+        photo: input("aboutPhoto").value.trim(),
         columns: [[], []]
       },
       heroImages: Array.from(heroImageList.querySelectorAll(".image-editor")).map((editor) => ({
@@ -529,6 +545,13 @@
         setStatus(uploadMessage(file));
       }, { padToSquare: false });
     });
+  });
+
+  document.querySelector("[data-about-photo-upload]")?.addEventListener("change", (event) => {
+    readUpload(event.target.files[0], (result, file) => {
+      input("aboutPhoto").value = result;
+      setStatus(uploadMessage(file));
+    }, { padToSquare: false });
   });
 
   document.querySelector("[data-preview]").addEventListener("click", () => {

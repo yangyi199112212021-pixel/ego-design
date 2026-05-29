@@ -68,6 +68,14 @@
               底部大标题
               <input name="aboutTitle" type="text" />
             </label>
+            <label>
+              个人照片路径
+              <input name="aboutPhoto" type="text" />
+            </label>
+            <label>
+              上传个人照片
+              <input data-about-photo-upload type="file" accept="image/*" />
+            </label>
           </div>
           <div class="project-editor-list about-editor-list" data-about-list></div>
         </section>
@@ -209,7 +217,11 @@
       <article class="project-editor">
         <div class="project-editor-head">
           <h3 data-project-name>项目</h3>
-          <button type="button" data-remove-project>删除项目</button>
+          <div class="project-order-actions">
+            <button type="button" data-move-project-up>上移</button>
+            <button type="button" data-move-project-down>下移</button>
+            <button type="button" data-remove-project>删除项目</button>
+          </div>
         </div>
         <div class="field-grid">
           <label>

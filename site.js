@@ -151,6 +151,38 @@
     };
   }
 
+  function splitDetailDescription(description) {
+    const text = String(description || "")
+      .replace(/\u0002/g, "")
+      .replace(/\r/g, "")
+      .trim();
+    const result = { en: [], zh: [] };
+    if (!text) return result;
+
+    text
+      .split(/\n+/)
+      .flatMap((line) => line.split(/(?<=[\u3400-\u9fff。！？；，、])(?=[A-Za-z])/g))
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .forEach((line) => {
+        const chineseCount = (line.match(/[\u3400-\u9fff]/g) || []).length;
+        const latinCount = (line.match(/[A-Za-z]/g) || []).length;
+        if (chineseCount > latinCount * 0.35) {
+          result.zh.push(line);
+        } else {
+          result.en.push(line);
+        }
+      });
+
+    if (!result.en.length && result.zh.length > 1) {
+      result.en.push(result.zh.pop());
+    }
+    if (!result.zh.length && result.en.length > 1) {
+      result.zh.push(result.en.pop());
+    }
+    return result;
+  }
+
   function renderTags(data) {
     document.querySelectorAll("[data-tags]").forEach((track) => {
       track.innerHTML = "";
@@ -518,12 +550,12 @@
 
     if (project) {
       document.title = `${data.siteTitle} | ${project.title}`;
-      text("[data-detail-group]", project.group || "");
       text("[data-detail-project-title]", project.title || "");
       text("[data-detail-category]", project.category || "");
       text("[data-detail-client]", project.client || "");
-      text("[data-detail-year]", project.year || project.date || "");
-      text("[data-detail-description]", project.detailDescription || project.summary || "");
+      const detailCopy = splitDetailDescription(project.detailDescription || project.summary || "");
+      text("[data-detail-description-en]", detailCopy.en.join("\n"));
+      text("[data-detail-description-zh]", detailCopy.zh.join("\n"));
 
       const gallery = document.querySelector("[data-detail-gallery]");
       if (gallery) {
@@ -616,10 +648,16 @@
   function renderAbout(data) {
     const grid = document.querySelector("[data-about-grid]");
     const title = document.querySelector("[data-about-title]");
+    const photo = document.querySelector("[data-about-photo]");
     if (!grid || !data.about) return;
     grid.innerHTML = "";
     if (title) {
       title.textContent = data.about.title || "About ...";
+    }
+    if (photo) {
+      const photoSrc = data.about.photo || "assets/about-photo.jpg";
+      photo.alt = "ego portrait";
+      applyResponsiveImage(photo, photoSrc, "(max-width: 760px) 132px, 420px");
     }
     const columns = clone(data.about.columns || []);
     const experienceHeading = "professional experience";

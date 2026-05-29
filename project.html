@@ -15,27 +15,24 @@
       </nav>
     </header>
 
+    <div class="ticker detail-ticker" aria-label="Categories">
+      <div class="ticker-track" data-tags></div>
+    </div>
+
     <main class="detail-template">
       <section class="detail-intro" aria-labelledby="detail-title">
         <div class="detail-title-block">
-          <p class="detail-eyebrow" data-detail-group></p>
           <h1 id="detail-title" data-detail-project-title></h1>
+          <div class="detail-credit">
+            <p><span>art :</span> <strong data-detail-client></strong></p>
+            <p><span>design :</span> <strong data-detail-category></strong></p>
+          </div>
         </div>
-        <dl class="detail-meta">
-          <div>
-            <dt>Category</dt>
-            <dd data-detail-category></dd>
-          </div>
-          <div>
-            <dt>Client</dt>
-            <dd data-detail-client></dd>
-          </div>
-          <div>
-            <dt>Year</dt>
-            <dd data-detail-year></dd>
-          </div>
-        </dl>
-        <p class="detail-description" data-detail-description></p>
+        <p class="detail-description detail-description-en" data-detail-description-en></p>
+        <div class="detail-info-block">
+          <h2>INFO</h2>
+          <p class="detail-description detail-description-zh" data-detail-description-zh></p>
+        </div>
       </section>
 
       <section class="detail-gallery" data-detail-gallery aria-label="Project images"></section>
