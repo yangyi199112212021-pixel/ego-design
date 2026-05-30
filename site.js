@@ -679,9 +679,12 @@
         const blockNode = document.createElement("div");
         blockNode.className = "about-block";
         const lines = String(block.body || "")
-          .split("\n")
-          .map(escapeHtml)
-          .join("<br>");
+          .split(/\n{2,}/)
+          .map((paragraph) => paragraph
+            .split("\n")
+            .map(escapeHtml)
+            .join("<br>"))
+          .join("</p><p>");
         blockNode.innerHTML = `<h2>${escapeHtml(block.heading)}</h2><p>${lines}</p>`;
         columnNode.appendChild(blockNode);
       });

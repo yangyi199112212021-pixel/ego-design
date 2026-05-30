@@ -293,14 +293,6 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "showDetailText": true,
       "detailImages": [
         {
-          "src": "assets/uploads/1780048527130-eaxd8639uiv.jpg",
-          "width": "full"
-        },
-        {
-          "src": "assets/uploads/1780048529644-3faeks03bv5.jpg",
-          "width": "full"
-        },
-        {
           "src": "assets/uploads/1779951527411-t8p8q309mp.jpg",
           "width": "full"
         },
@@ -310,6 +302,18 @@ window.PORTFOLIO_DEFAULT_DATA = {
         },
         {
           "src": "assets/uploads/1780062108121-81l0p9fq04w.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780048527130-eaxd8639uiv.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780048529644-3faeks03bv5.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780075150369-vrmrqkrf3ph.jpg",
           "width": "full"
         },
         {
@@ -347,15 +351,36 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "year": "2023",
       "date": "2023.5.21",
       "summary": "",
-      "image": "assets/uploads/1780064527435-egoask2ikkc.jpg",
+      "image": "assets/uploads/1780150200651-8hp8p3gcamr.jpg",
       "hoverVideo": "",
-      "detailBackground": "",
+      "detailBackground": "assets/uploads/1780138247282-753y2zxlxmu.jpg",
       "detailTitleStrong": "",
       "detailTitleLight": "",
       "detailKicker": "PLUSH TOY",
       "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit\n我们试着让我们的口味们放低一点，但他们就是控制不了。它们是饮料货架上最亮的泡泡，是冰箱里闪闪发光的星星。他们提供水果包装的爆米花，大声而自豪，我们凭什么阻止他们？",
       "showDetailText": true,
-      "detailImages": []
+      "detailImages": [
+        {
+          "src": "assets/uploads/1780154769134-3djdq7h2knp.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780153837618-iu7bjbx84ek.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1780153839741-gpr8jpblwf.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1780153841553-y95c4me7vaa.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1780153936080-ptj8d6pvga.png",
+          "width": "full"
+        }
+      ]
     },
     {
       "id": "project-1779563456548",
