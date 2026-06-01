@@ -243,7 +243,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "year": "",
       "date": "2026",
       "summary": "「コロンビア·ピクチャーズ」の名作映画7タイトルとのコラボレ一ションアイテム全16種類を発壳!",
-      "image": "assets/uploads/1780299573067-cyxyzksyyf.jpg",
+      "image": "assets/uploads/1780321789839-x1wgub2ak3.jpg",
       "hoverVideo": "",
       "detailBackground": "assets/uploads/1779695298874-jlyk7ezzlpr.webp",
       "detailTitleStrong": "ego and...",
@@ -297,11 +297,11 @@ window.PORTFOLIO_DEFAULT_DATA = {
           "width": "full"
         },
         {
-          "src": "assets/uploads/1780063667545-g82w3w0iwy6.png",
+          "src": "assets/uploads/1780320862865-8qpqi0uu3ye.jpg",
           "width": "full"
         },
         {
-          "src": "assets/uploads/1780062108121-81l0p9fq04w.jpg",
+          "src": "assets/uploads/1780319327965-fxv13y07iun.jpg",
           "width": "full"
         },
         {
@@ -350,8 +350,8 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "client": "Client",
       "year": "2023",
       "date": "2023.5.21",
-      "summary": "",
-      "image": "assets/uploads/1780313641967-cfo6bfph3af.jpg",
+      "summary": "元气森林独家冠名的#种地吧#",
+      "image": "assets/uploads/1780318149974-7kvan50pfsy.jpg",
       "hoverVideo": "",
       "detailBackground": "assets/uploads/1780138247282-753y2zxlxmu.jpg",
       "detailTitleStrong": "",
@@ -369,11 +369,11 @@ window.PORTFOLIO_DEFAULT_DATA = {
           "width": "full"
         },
         {
-          "src": "assets/uploads/1780314634122-2jv4wx5wfpu.jpg",
+          "src": "assets/uploads/1780318942471-0v23cdz9p8yd.jpg",
           "width": "half"
         },
         {
-          "src": "assets/uploads/1780314636949-x6f6n9xb98m.jpg",
+          "src": "assets/uploads/1780318946865-2jjju5gmiv.jpg",
           "width": "half"
         },
         {
@@ -453,6 +453,25 @@ window.PORTFOLIO_DEFAULT_DATA = {
           "width": "half"
         }
       ]
+    },
+    {
+      "id": "project-1780303999975",
+      "title": "百威新年",
+      "group": "budweiser",
+      "category": "Visual Identity",
+      "client": "Client",
+      "year": "2026",
+      "date": "2026.5.21",
+      "summary": "",
+      "image": "assets/uploads/1780304021094-t9byylwq2tc.jpg",
+      "hoverVideo": "",
+      "detailBackground": "",
+      "detailTitleStrong": "",
+      "detailTitleLight": "",
+      "detailKicker": "PLUSH TOY",
+      "detailDescription": "",
+      "showDetailText": true,
+      "detailImages": []
     },
     {
       "id": "project-1779565213195",
@@ -561,25 +580,6 @@ window.PORTFOLIO_DEFAULT_DATA = {
           "width": "full"
         }
       ]
-    },
-    {
-      "id": "project-1780303999975",
-      "title": "New Project",
-      "group": "budweiser",
-      "category": "Visual Identity",
-      "client": "Client",
-      "year": "2026",
-      "date": "2026.5.21",
-      "summary": "",
-      "image": "assets/uploads/1780304021094-t9byylwq2tc.jpg",
-      "hoverVideo": "",
-      "detailBackground": "",
-      "detailTitleStrong": "",
-      "detailTitleLight": "",
-      "detailKicker": "PLUSH TOY",
-      "detailDescription": "",
-      "showDetailText": true,
-      "detailImages": []
     },
     {
       "id": "project-1779872773271",
