@@ -243,7 +243,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "year": "",
       "date": "2026",
       "summary": "「コロンビア·ピクチャーズ」の名作映画7タイトルとのコラボレ一ションアイテム全16種類を発壳!",
-      "image": "assets/uploads/1780062484989-cmdvfe5rtxh.png",
+      "image": "assets/uploads/1780299573067-cyxyzksyyf.jpg",
       "hoverVideo": "",
       "detailBackground": "assets/uploads/1779695298874-jlyk7ezzlpr.webp",
       "detailTitleStrong": "ego and...",
@@ -257,7 +257,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
           "width": "full"
         },
         {
-          "src": "assets/uploads/1780069071289-tahuptczhw.jpg",
+          "src": "assets/uploads/1780299535827-ryy9z3gb2qa.jpg",
           "width": "half"
         },
         {
@@ -351,7 +351,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "year": "2023",
       "date": "2023.5.21",
       "summary": "",
-      "image": "assets/uploads/1780150200651-8hp8p3gcamr.jpg",
+      "image": "assets/uploads/1780313641967-cfo6bfph3af.jpg",
       "hoverVideo": "",
       "detailBackground": "assets/uploads/1780138247282-753y2zxlxmu.jpg",
       "detailTitleStrong": "",
@@ -361,24 +361,28 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "showDetailText": true,
       "detailImages": [
         {
-          "src": "assets/uploads/1780154769134-3djdq7h2knp.jpg",
+          "src": "assets/uploads/1780311953514-hvbqsupvbx.jpg",
           "width": "full"
         },
         {
-          "src": "assets/uploads/1780153837618-iu7bjbx84ek.jpg",
-          "width": "third"
-        },
-        {
-          "src": "assets/uploads/1780153839741-gpr8jpblwf.jpg",
-          "width": "third"
-        },
-        {
-          "src": "assets/uploads/1780153841553-y95c4me7vaa.jpg",
-          "width": "third"
-        },
-        {
-          "src": "assets/uploads/1780153936080-ptj8d6pvga.png",
+          "src": "assets/uploads/1780315157985-78ya7juterl.jpg",
           "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780314634122-2jv4wx5wfpu.jpg",
+          "width": "half"
+        },
+        {
+          "src": "assets/uploads/1780314636949-x6f6n9xb98m.jpg",
+          "width": "half"
+        },
+        {
+          "src": "assets/uploads/1780314641758-zenx0j0aiqp.jpg",
+          "width": "half"
+        },
+        {
+          "src": "assets/uploads/1780314643583-4e2buxw3nou.jpg",
+          "width": "half"
         }
       ]
     },
@@ -414,6 +418,10 @@ window.PORTFOLIO_DEFAULT_DATA = {
         },
         {
           "src": "assets/uploads/1780059404839-9kfbq2haf6i.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780299798890-x94fahlipp.jpg",
           "width": "full"
         },
         {
@@ -499,6 +507,30 @@ window.PORTFOLIO_DEFAULT_DATA = {
       ]
     },
     {
+      "id": "女生福佳",
+      "title": "女神福佳",
+      "group": "budweiser",
+      "category": "Visual Identity",
+      "client": "Client",
+      "year": "2026",
+      "date": "2026.5.21",
+      "summary": "",
+      "image": "assets/uploads/1780304725297-2zhkslq5std.jpg",
+      "hoverVideo": "",
+      "detailBackground": "assets/uploads/1780305341288-508fg3jse6.jpg",
+      "detailTitleStrong": "",
+      "detailTitleLight": "",
+      "detailKicker": "PLUSH TOY",
+      "detailDescription": "",
+      "showDetailText": true,
+      "detailImages": [
+        {
+          "src": "assets/uploads/1780305341288-508fg3jse6.jpg",
+          "width": "full"
+        }
+      ]
+    },
+    {
       "id": "project-1779778869831",
       "title": "富士相机礼盒",
       "group": "other",
@@ -529,6 +561,25 @@ window.PORTFOLIO_DEFAULT_DATA = {
           "width": "full"
         }
       ]
+    },
+    {
+      "id": "project-1780303999975",
+      "title": "New Project",
+      "group": "budweiser",
+      "category": "Visual Identity",
+      "client": "Client",
+      "year": "2026",
+      "date": "2026.5.21",
+      "summary": "",
+      "image": "assets/uploads/1780304021094-t9byylwq2tc.jpg",
+      "hoverVideo": "",
+      "detailBackground": "",
+      "detailTitleStrong": "",
+      "detailTitleLight": "",
+      "detailKicker": "PLUSH TOY",
+      "detailDescription": "",
+      "showDetailText": true,
+      "detailImages": []
     },
     {
       "id": "project-1779872773271",
