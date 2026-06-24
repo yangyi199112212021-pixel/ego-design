@@ -282,8 +282,8 @@
           </label>
           <div class="wide-field detail-images-editor">
             <div class="detail-images-head">
-              <strong>详情页图片组</strong>
-              <button type="button" data-add-detail-image>添加详情图</button>
+              <strong>详情页媒体组</strong>
+              <button type="button" data-add-detail-image>添加详情媒体</button>
             </div>
             <div data-detail-image-list></div>
           </div>
@@ -316,13 +316,13 @@
         <div class="admin-thumb">
           <img data-detail-image-preview alt="" />
         </div>
-        <input data-detail-image-path type="text" placeholder="详情页图片路径" />
+        <input data-detail-image-path type="text" placeholder="详情页图片 / 视频路径" />
         <select data-detail-image-width aria-label="详情图宽度">
           <option value="full">整行</option>
           <option value="half">1/2 宽</option>
           <option value="third">1/3 宽</option>
         </select>
-        <input data-detail-image-upload type="file" accept="image/*" />
+        <input data-detail-image-upload type="file" accept="image/*,video/mp4,video/webm,video/quicktime" />
         <button type="button" data-move-detail-image-up>上移</button>
         <button type="button" data-move-detail-image-down>下移</button>
         <button type="button" data-remove-detail-image>删除</button>

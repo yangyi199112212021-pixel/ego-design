@@ -194,6 +194,18 @@
       : `图片原图已保存到 assets/uploads${size}，点击保存后生效。`;
   }
 
+  function isVideoPath(path) {
+    return /\.(mp4|webm|mov)(\?.*)?$/i.test(String(path || ""));
+  }
+
+  function mediaUploadMessage(file) {
+    if (file?.type.startsWith("video/")) {
+      const size = ` ${(file.size / 1024 / 1024).toFixed(1)}MB`;
+      return `视频已保存到 assets/uploads${size}，点击保存后生效。`;
+    }
+    return uploadMessage(file);
+  }
+
   function addHeroImage(item) {
     const defaults = {
       id: `hero-image-${Date.now()}`,
@@ -254,18 +266,27 @@
       : detailImage;
     const imageWidth = typeof detailImage === "object" && detailImage ? detailImage.width || "full" : "full";
     function syncDetailPreview() {
-      preview.src = pathInput.value.trim();
-      preview.hidden = !preview.src;
+      const value = pathInput.value.trim();
+      preview.hidden = !value;
+      preview.alt = isVideoPath(value) ? "视频" : "";
+      preview.src = isVideoPath(value) ? "" : value;
     }
     pathInput.value = imagePath || "";
     widthSelect.value = ["full", "half", "third"].includes(imageWidth) ? imageWidth : "full";
     pathInput.addEventListener("input", syncDetailPreview);
     row.querySelector("[data-detail-image-upload]").addEventListener("change", (event) => {
-      readUpload(event.target.files[0], (result, file) => {
+      const file = event.target.files[0];
+      if (!file) return;
+      const handleUpload = (result, uploadedFile) => {
         pathInput.value = result;
         syncDetailPreview();
-        setStatus(uploadMessage(file));
-      }, { padToSquare: false });
+        setStatus(mediaUploadMessage(uploadedFile));
+      };
+      if (file.type.startsWith("video/")) {
+        readRawUpload(file, handleUpload);
+        return;
+      }
+      readUpload(file, handleUpload, { padToSquare: false });
     });
     row.querySelector("[data-move-detail-image-up]").addEventListener("click", () => {
       const previous = row.previousElementSibling;

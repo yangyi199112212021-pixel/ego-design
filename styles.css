@@ -835,6 +835,9 @@ body.contact-open {
 }
 
 .detail-gallery img.detail-gallery-media {
+  min-height: 0;
+  object-fit: contain;
+  background: transparent;
   cursor: zoom-in;
 }
 

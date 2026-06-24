@@ -243,7 +243,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "year": "",
       "date": "2026",
       "summary": "「コロンビア·ピクチャーズ」の名作映画7タイトルとのコラボレ一ションアイテム全16種類を発壳!",
-      "image": "assets/uploads/1780321789839-x1wgub2ak3.jpg",
+      "image": "assets/uploads/1781440754879-82j521oz2im.jpg",
       "hoverVideo": "",
       "detailBackground": "assets/uploads/1779695298874-jlyk7ezzlpr.webp",
       "detailTitleStrong": "ego and...",
@@ -317,7 +317,11 @@ window.PORTFOLIO_DEFAULT_DATA = {
           "width": "full"
         },
         {
-          "src": "assets/uploads/1779961208151-hgcip0wygg.jpg",
+          "src": "assets/uploads/1780673366785-gbjzob00c5u.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1780672295111-z8dtno05roo.jpg",
           "width": "full"
         },
         {
@@ -369,6 +373,10 @@ window.PORTFOLIO_DEFAULT_DATA = {
           "width": "full"
         },
         {
+          "src": "assets/uploads/1780314643583-4e2buxw3nou.jpg",
+          "width": "half"
+        },
+        {
           "src": "assets/uploads/1780318942471-0v23cdz9p8yd.jpg",
           "width": "half"
         },
@@ -378,10 +386,6 @@ window.PORTFOLIO_DEFAULT_DATA = {
         },
         {
           "src": "assets/uploads/1780314641758-zenx0j0aiqp.jpg",
-          "width": "half"
-        },
-        {
-          "src": "assets/uploads/1780314643583-4e2buxw3nou.jpg",
           "width": "half"
         }
       ]
@@ -578,6 +582,18 @@ window.PORTFOLIO_DEFAULT_DATA = {
         {
           "src": "assets/uploads/1779864499794-mfezh7fby1q.jpg",
           "width": "full"
+        },
+        {
+          "src": "assets/uploads/1781274486123-264jqaz7i6r.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1781274488311-fd760gxbh67.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1781274489975-iutjfgqnosf.jpg",
+          "width": "third"
         }
       ]
     },
@@ -596,11 +612,39 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailTitleStrong": "",
       "detailTitleLight": "",
       "detailKicker": "PLUSH TOY",
-      "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit\n我们试着让我们的口味们放低一点，但他们就是控制不了。它们是饮料货架上最亮的泡泡，是冰箱里闪闪发光的星星。他们提供水果包装的爆米花，大声而自豪，我们凭什么阻止他们？",
+      "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit\n我们试着让我们的口味们放低一点，\n但他们就是控制不了。\n它们是饮料货架上最亮的泡泡，是冰箱里闪闪发光的星星。他们提供水果包装的爆米花，大声而自豪，我们凭什么阻止他们？",
       "showDetailText": true,
       "detailImages": [
         {
           "src": "assets/uploads/1779872963930-jud4zp909ii.png",
+          "width": "full"
+        }
+      ]
+    },
+    {
+      "id": "project-1781075975507",
+      "title": "KFC x 最终幻想",
+      "group": "Haagen-Dazs",
+      "category": "Visual Identity",
+      "client": "Client",
+      "year": "2026",
+      "date": "2026.5.21",
+      "summary": "本次肯德基 × FINAL FANTASY LIGHTNING 联名，以「味觉幻想（Taste Fantasy）」为核心概念，将幻想从视觉体验延伸至感官体验，让幻想不再停留于屏幕之中，而成为能够被真实感知的存在。",
+      "image": "assets/uploads/1781075988709-ygebr0q58h.png",
+      "hoverVideo": "assets/uploads/1782288214088-x5se7ueoshc.mp4",
+      "detailBackground": "assets/uploads/1781163906723-56esk3v5k2r.mp4",
+      "detailTitleStrong": "",
+      "detailTitleLight": "",
+      "detailKicker": "PLUSH TOY",
+      "detailDescription": "In the world of \"Final Fantasy\", fantasy is never an escape from reality; rather, it endows reality with new ways of perception.\nThis time, the collaboration between KFC and FINAL FANTASY LIGHTNING takes \"Taste Fantasy\" as the core concept, extending fantasy from visual experience to sensory experience, making fantasy no longer remain on the screen but become an existence that can be truly perceived.\nWe regard our co-branded new product, the Rose Cheese Burger, as a medium connecting the two worlds. The fragrance of roses, the richness of cheese and the visual impression of pink jointly create a unique experience that lies between reality and fantasy. When consumers open the package and take the first bite, fantasy is no longer just a setting in the story, but is awakened, perceived and materialized in the sense of taste.\n在《最终幻想》的世界里，幻想从来不是逃离现实，而是赋予现实新的感知方式。\n本次肯德基 × FINAL FANTASY LIGHTNING 联名，以「味觉幻想（Taste Fantasy）」为核心概念，将幻想从视觉体验延伸至感官体验，让幻想不再停留于屏幕之中，而成为能够被真实感知的存在。\n我们将联名新品玫瑰芝士汉堡视为连接两个世界的媒介。玫瑰的香气、芝士的浓郁、粉色的视觉印象，共同构建出一种介于现实与幻想之间的独特体验。当消费者打开包装、品尝第一口时，幻想不再只是故事中的设定，而是在味觉中被唤醒、被感知、被具象化。",
+      "showDetailText": true,
+      "detailImages": [
+        {
+          "src": "assets/uploads/1782288223203-u8tfmb04lw.mp4",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1782288311720-fmhz349g3ga.jpg",
           "width": "full"
         }
       ]
