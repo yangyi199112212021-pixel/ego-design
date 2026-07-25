@@ -86,7 +86,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "id": "hero-image-1779562170734",
       "name": "New image",
       "projectId": "",
-      "image": "assets/uploads/1779778000720-znsw65kf49n.webp"
+      "image": "assets/uploads/1784790422488-ygddmcvzc3.webp"
     },
     {
       "id": "hero-image-1779562773636",
@@ -135,21 +135,81 @@ window.PORTFOLIO_DEFAULT_DATA = {
   ],
   "projects": [
     {
+      "id": "project-1784710297045",
+      "title": "Haagen-Dazs2026年中国区夏季整合营销",
+      "group": "Haagen-Dazs",
+      "category": "campaign",
+      "client": "Client",
+      "year": "2026",
+      "date": "2026.5.21",
+      "summary": "",
+      "image": "assets/uploads/1784713731940-tykp1nnqnp.jpg",
+      "hoverVideo": "assets/uploads/1784710407750-r6owsjtrqib.mp4",
+      "detailBackground": "assets/uploads/1784710417916-m2iw8pcxsbm.mp4",
+      "detailTitleStrong": "",
+      "detailTitleLight": "",
+      "detailKicker": "PLUSH TOY",
+      "detailDescription": "To evoke people's yearning, we have created a rich and sensual world for Haagen-Dazs. Through carefully designed lighting and luxurious textures, we have created a mysterious and vibrant atmosphere.\nOur reinterpreted classic track \"At Last\" enhanced the atmosphere, created a sense of anticipation through crescendo, and finally reached the peak moment of exquisite enjoyment.\n\"Squeezing ice cream\" is a signature ritual of our brand. This slow and meticulous presentation style showcases the brand's high-end quality and silky texture - ice cream is always the star, presenting a soft, dried-up and unforgettable texture.\n\nWhat is ultimately presented is a series of alluring products that can tease the taste buds even before savoring the ice cream.\n为了唤起人们的渴望，我们为哈根达斯打造了一个丰富、感性的世界，通过精心设计的灯光和奢华的质感，营造出一种神秘而充满活力的氛围。\n我们重新演绎的经典曲目《At Last》强化了氛围，通过渐强营造出期待感，最终达到精致享受的巅峰时刻。\n“挤压冰淇淋”是我们品牌的标志性仪式。这种缓慢而细致的呈现方式，展现了品牌的高端品质和丝滑口感——冰淇淋永远是主角，呈现出柔软、带有冷凝水痕迹、令人回味无穷的质感。\n\n最终呈现的是一系列诱人的产品，在品尝冰淇淋之前就能挑逗味蕾。",
+      "showDetailText": true,
+      "detailImages": [
+        {
+          "src": "assets/uploads/1784710417916-m2iw8pcxsbm.mp4",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1784786873751-qohk1e14q4i.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1784790991908-6u4jp477dhh.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1784787202888-s00viambo09.jpg",
+          "width": "full"
+        },
+        {
+          "src": "assets/uploads/1784711133531-tlo3bosaed.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1784711139163-ft8qbcsfvau.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1784711203888-jllg6fc6nzc.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1784711314873-yet64s5cqf9.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1784711363553-64fx2p2fuj.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1784711436327-hvs2j65yt2f.jpg",
+          "width": "third"
+        }
+      ]
+    },
+    {
       "id": "1",
-      "title": "Haagendazs 秋季新品",
+      "title": "Haagendazs 门店秋季新品上市",
       "group": "Haagen-Dazs",
       "category": "poster",
       "client": "Haagen-Dazs",
       "year": "",
       "date": "2026",
-      "summary": "「コロンビア·ピクチャーズ」の名作映画7タイトルとのコラボレ一ションアイテム全16種類を発壳!",
+      "summary": "秋日限定，把温柔藏进甜蜜里",
       "image": "assets/uploads/1779632407292-lsxtdmssavp.webp",
       "hoverVideo": "assets/uploads/1779761861712-87gjoq38o7g.mp4",
       "detailBackground": "assets/uploads/1779635705114-xo37k471qjl.webp",
       "detailTitleStrong": "ego and...",
       "detailTitleLight": "hagendas",
       "detailKicker": "PLUSH TOY",
-      "detailDescription": "We tried telling our flavors to take it down a notch but they simply won’t be contained. They’re the brightest bubbles in the beverage aisle, the sparkling stars of the fridge. They’re serving fruit-packed-pow, loud and proud, and who are we to stop them?\n我们试着让我们的口味们放低一点，但他们就是控制不了。它们是饮料货架上最亮的泡泡，是冰箱里闪闪发光的星星。他们提供水果包装的爆米花，大声而自豪，我们凭什么阻止他们？",
+      "detailDescription": "When the gentle autumn wind blows, Haagen-Dazs brings out its limited edition autumn new products.\nSelect the flavors of autumn, blend rich ice cream with seasonal inspiration. In a spoonful of smooth and delicate texture, feel the warmth and romance of autumn.\nStep into a Haagen-Dazs store and embark on a luxurious moment of sweet autumn enjoyment.\n当秋风轻拂，哈根达斯带来秋季新品限定。\n甄选秋日风味，将醇厚冰淇淋与季节灵感交融，在一勺细腻绵滑中，感受属于秋天的温暖与浪漫。\n走进哈根达斯门店，开启一场关于秋日甜蜜的奢享时刻。",
       "showDetailText": true,
       "detailImages": [
         {
@@ -198,14 +258,14 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "client": "Haagen-Dazs",
       "year": "",
       "date": "2026",
-      "summary": "为哈根达斯端午节制作限定礼盒",
-      "image": "assets/uploads/1779982947922-5aq4nzgdjom.jpg",
-      "hoverVideo": "",
+      "summary": "一口冰粽，邂逅东方浪漫",
+      "image": "assets/uploads/1784779966223-dw4ptmsb03.jpg",
+      "hoverVideo": "assets/uploads/1784780057227-jgq9lesssys.mp4",
       "detailBackground": "assets/uploads/1779640715051-rfmiif7358j.webp",
       "detailTitleStrong": "ego and...",
       "detailTitleLight": "hagendas",
       "detailKicker": "PLUSH TOY",
-      "detailDescription": "Workbyworks is a multidisciplinary design studio based in New York and Shanghai, founded by Han Gao and Wenbo Yi.  Working wit\n我们试着让我们的口味们放低一点，但他们就是控制不了。它们是饮料货架上最亮的泡泡，是冰箱里闪闪发光的星星。他们提供水果包装的爆米花，大声而自豪，我们凭什么阻止他们？",
+      "detailDescription": "The Dragon Boat Festival is not only filled with the traditional aroma of zongzi.\nHaagen-dazs integrates classic ice cream into the Dragon Boat Festival celebration, enveloping the Oriental flavor with a delicate milk aroma and rejuvenating the thousand-year-old custom.\nCool in the mouth, sweet and lingering, presenting a luxurious gift exclusive to the summer Dragon Boat Festival.\n端午，不止有传统的粽香。\n哈根达斯将经典冰淇淋融入端午礼序，以细腻奶香包裹东方风味，让千年习俗焕新演绎。\n冰凉入口，甜蜜绵延，献上一份只属于夏日端午的奢宠心意。",
       "showDetailText": false,
       "detailImages": [
         {
@@ -236,14 +296,14 @@ window.PORTFOLIO_DEFAULT_DATA = {
     },
     {
       "id": "plush",
-      "title": "Haagen-dazs toys",
+      "title": "Haagen-Dazs春季踏青季渠道营销",
       "group": "Haagen-Dazs",
-      "category": "gwp",
-      "client": "On",
+      "category": "campaign",
+      "client": "",
       "year": "",
       "date": "2026",
-      "summary": "「コロンビア·ピクチャーズ」の名作映画7タイトルとのコラボレ一ションアイテム全16種類を発壳!",
-      "image": "assets/uploads/1781440754879-82j521oz2im.jpg",
+      "summary": "",
+      "image": "assets/uploads/1784795130835-750dwla35a8.jpg",
       "hoverVideo": "",
       "detailBackground": "assets/uploads/1779695298874-jlyk7ezzlpr.webp",
       "detailTitleStrong": "ego and...",
@@ -253,26 +313,33 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "showDetailText": false,
       "detailImages": [
         {
-          "src": "assets/uploads/1779949382228-gkhj215asga.png",
-          "width": "full"
-        },
-        {
-          "src": "assets/uploads/1780299535827-ryy9z3gb2qa.jpg",
+          "src": "assets/uploads/1784800882416-s0wn3ad7ab.jpg",
           "width": "half"
         },
         {
-          "src": "assets/uploads/1780067764059-idyihcak7pr.jpg",
-          "width": "half"
-        },
-        {
-          "src": "assets/uploads/1780069603731-2i9t8i97v0h.jpg",
-          "width": "half"
-        },
-        {
-          "src": "assets/uploads/1780068237624-nresrph54tr.jpg",
+          "src": "assets/uploads/1784800422488-awmr31zvfbb.jpg",
           "width": "half"
         }
       ]
+    },
+    {
+      "id": "project-1784713540438",
+      "title": "丑八怪巧克力2026年品牌代言",
+      "group": "Haagen-Dazs",
+      "category": "Visual Identity",
+      "client": "Client",
+      "year": "2026",
+      "date": "2026.5.21",
+      "summary": "",
+      "image": "assets/uploads/1784713553764-gluw4kkw71j.jpg",
+      "hoverVideo": "",
+      "detailBackground": "",
+      "detailTitleStrong": "",
+      "detailTitleLight": "",
+      "detailKicker": "PLUSH TOY",
+      "detailDescription": "",
+      "showDetailText": true,
+      "detailImages": []
     },
     {
       "id": "project-1779563455574",
@@ -625,12 +692,12 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "id": "project-1781075975507",
       "title": "KFC x 最终幻想",
       "group": "Haagen-Dazs",
-      "category": "Visual Identity",
+      "category": "campaign",
       "client": "Client",
       "year": "2026",
       "date": "2026.5.21",
       "summary": "本次肯德基 × FINAL FANTASY LIGHTNING 联名，以「味觉幻想（Taste Fantasy）」为核心概念，将幻想从视觉体验延伸至感官体验，让幻想不再停留于屏幕之中，而成为能够被真实感知的存在。",
-      "image": "assets/uploads/1781075988709-ygebr0q58h.png",
+      "image": "assets/uploads/1784793196939-qhak5ftm9d.jpg",
       "hoverVideo": "assets/uploads/1782288214088-x5se7ueoshc.mp4",
       "detailBackground": "assets/uploads/1781163906723-56esk3v5k2r.mp4",
       "detailTitleStrong": "",
