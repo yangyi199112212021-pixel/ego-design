@@ -71,12 +71,6 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "image": "assets/hero-beer.png"
     },
     {
-      "id": "tea",
-      "name": "Tea bottle",
-      "projectId": "project-1779563456548",
-      "image": "assets/uploads/1780050968246-7hgl9165dgl.webp"
-    },
-    {
       "id": "hero-image-1779561989805",
       "name": "New image",
       "projectId": "2",
@@ -204,7 +198,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "date": "2026",
       "summary": "秋日限定，把温柔藏进甜蜜里",
       "image": "assets/uploads/1779632407292-lsxtdmssavp.webp",
-      "hoverVideo": "assets/uploads/1779761861712-87gjoq38o7g.mp4",
+      "hoverVideo": "assets/uploads/1785076359441-7eppoim6wzn.mp4",
       "detailBackground": "assets/uploads/1779635705114-xo37k471qjl.webp",
       "detailTitleStrong": "ego and...",
       "detailTitleLight": "hagendas",
@@ -260,7 +254,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "date": "2026",
       "summary": "一口冰粽，邂逅东方浪漫",
       "image": "assets/uploads/1784779966223-dw4ptmsb03.jpg",
-      "hoverVideo": "assets/uploads/1784780057227-jgq9lesssys.mp4",
+      "hoverVideo": "assets/uploads/1785074258810-plljpk43l2.mp4",
       "detailBackground": "assets/uploads/1779640715051-rfmiif7358j.webp",
       "detailTitleStrong": "ego and...",
       "detailTitleLight": "hagendas",
@@ -304,7 +298,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "date": "2026",
       "summary": "",
       "image": "assets/uploads/1784795130835-750dwla35a8.jpg",
-      "hoverVideo": "",
+      "hoverVideo": "assets/uploads/1785077280810-hae77k1jeai.mp4",
       "detailBackground": "assets/uploads/1779695298874-jlyk7ezzlpr.webp",
       "detailTitleStrong": "ego and...",
       "detailTitleLight": "hagendas",

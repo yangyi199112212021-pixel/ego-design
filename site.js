@@ -230,6 +230,7 @@
             const projectId = heroProjectId(item, data, entry.index);
             const link = document.createElement(projectId ? "a" : "span");
             link.className = "hero-image-link";
+            link.dataset.heroImageId = item.id || "";
             if (projectId) {
               link.href = `project.html?work=${encodeURIComponent(projectId)}`;
               link.setAttribute("aria-label", `Open ${item.name || "project"}`);
