@@ -247,6 +247,18 @@
     row.querySelector('[data-key="group"]').value = item.group || "";
     row.querySelector('[data-key="image"]').value = item.image || "";
     row.querySelector("[data-remove]").addEventListener("click", () => row.remove());
+    row.querySelector("[data-move-group-logo-up]").addEventListener("click", () => {
+      const previous = row.previousElementSibling;
+      if (!previous) return;
+      groupLogoList.insertBefore(row, previous);
+      setStatus("项目组 Logo 顺序已调整，点击保存后生效。");
+    });
+    row.querySelector("[data-move-group-logo-down]").addEventListener("click", () => {
+      const next = row.nextElementSibling;
+      if (!next) return;
+      groupLogoList.insertBefore(next, row);
+      setStatus("项目组 Logo 顺序已调整，点击保存后生效。");
+    });
     row.querySelector("[data-group-logo-upload]").addEventListener("change", (event) => {
       readUpload(event.target.files[0], (result, file) => {
         row.querySelector('[data-key="image"]').value = result;

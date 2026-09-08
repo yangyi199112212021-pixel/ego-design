@@ -1,8 +1,27 @@
 (function () {
   const STORAGE_KEY = "portfolioEditableData";
+  const FIXED_GROUP_LOGOS = {
+    "Haagen-Dazs": "assets/mobile/1779591453864-w2xpnute03g-mobile.jpg",
+    YQSL: "assets/mobile/1779591325621-ra2mjajec4d-mobile.jpg",
+    budweiser: "assets/mobile/1779591544694-b0fgctcql29-mobile.jpg",
+    kfc: "assets/kfc-logo.png"
+  };
 
   function clone(value) {
     return JSON.parse(JSON.stringify(value));
+  }
+
+  function normalizeGroupLogos(groupLogos) {
+    const logos = Array.isArray(groupLogos) ? groupLogos.map((item) => ({ ...item })) : [];
+    Object.entries(FIXED_GROUP_LOGOS).forEach(([group, image]) => {
+      const existing = logos.find((item) => item.group === group);
+      if (existing) {
+        existing.image = image;
+      } else {
+        logos.push({ group, image });
+      }
+    });
+    return logos;
   }
 
   function getData() {
@@ -10,6 +29,7 @@
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
       if (!saved || typeof saved !== "object") {
+        defaults.groupLogos = normalizeGroupLogos(defaults.groupLogos);
         return defaults;
       }
       const projects = Array.isArray(saved.projects) ? saved.projects : defaults.projects;
@@ -19,7 +39,7 @@
         navPills: Array.isArray(saved.navPills) ? saved.navPills : defaults.navPills,
         tags: Array.isArray(saved.tags) ? saved.tags : defaults.tags,
         heroImages: Array.isArray(saved.heroImages) ? saved.heroImages : defaults.heroImages,
-        groupLogos: Array.isArray(saved.groupLogos) ? saved.groupLogos : defaults.groupLogos,
+        groupLogos: normalizeGroupLogos(Array.isArray(saved.groupLogos) ? saved.groupLogos : defaults.groupLogos),
         about: saved.about && typeof saved.about === "object" ? saved.about : defaults.about,
         projects: projects.map((project) => ({
           group: "Haagen-Dazs",
@@ -36,6 +56,21 @@
     document.querySelectorAll(selector).forEach((node) => {
       node.textContent = value || "";
     });
+  }
+
+  function sortProjectsByGroupLogos(projects, groupLogos) {
+    const groupOrder = new Map(
+      (Array.isArray(groupLogos) ? groupLogos : [])
+        .map((item, index) => [item.group, index])
+    );
+    return (Array.isArray(projects) ? projects : [])
+      .map((project, index) => ({ project, index }))
+      .sort((a, b) => {
+        const aOrder = groupOrder.has(a.project.group) ? groupOrder.get(a.project.group) : Number.MAX_SAFE_INTEGER;
+        const bOrder = groupOrder.has(b.project.group) ? groupOrder.get(b.project.group) : Number.MAX_SAFE_INTEGER;
+        return aOrder === bOrder ? a.index - b.index : aOrder - bOrder;
+      })
+      .map((item) => item.project);
   }
 
   function escapeHtml(value) {
@@ -256,6 +291,11 @@
       logo.src = data.logoUrl;
     }
 
+    const detailLogo = document.querySelector("[data-detail-logo]");
+    if (detailLogo) {
+      detailLogo.src = data.logoUrl;
+    }
+
     const nav = document.querySelector("[data-nav-pills]");
     if (nav) {
       nav.innerHTML = "";
@@ -289,7 +329,7 @@
     if (grid) {
       grid.innerHTML = "";
       const groups = [];
-      data.projects.forEach((project) => {
+      sortProjectsByGroupLogos(data.projects, data.groupLogos).forEach((project) => {
         const label = project.group || "Other";
         let group = groups.find((item) => item.label === label);
         if (!group) {

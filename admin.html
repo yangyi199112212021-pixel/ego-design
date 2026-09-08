@@ -209,7 +209,11 @@
         <input data-key="group" type="text" placeholder="项目组标签，比如 yqsl" />
         <input data-key="image" type="text" placeholder="Logo 图片路径 / 上传结果" />
         <input data-group-logo-upload type="file" accept="image/*" />
-        <button type="button" data-remove>删除</button>
+        <div class="row-order-actions">
+          <button type="button" data-move-group-logo-up>上移</button>
+          <button type="button" data-move-group-logo-down>下移</button>
+          <button type="button" data-remove>删除</button>
+        </div>
       </div>
     </template>
 
