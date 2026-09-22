@@ -26,6 +26,10 @@
 
   function getData() {
     const defaults = clone(window.PORTFOLIO_DEFAULT_DATA);
+    if (window.location.protocol !== "file:") {
+      defaults.groupLogos = normalizeGroupLogos(defaults.groupLogos);
+      return defaults;
+    }
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
       if (!saved || typeof saved !== "object") {
@@ -58,17 +62,48 @@
     });
   }
 
+  function formatDetailTitle(value, maxCharacters = 9) {
+    return String(value || "")
+      .split(/\r?\n/)
+      .flatMap((line) => {
+        const characters = Array.from(line);
+        if (!characters.length) return [""];
+        const chunks = [];
+        for (let index = 0; index < characters.length; index += maxCharacters) {
+          chunks.push(characters.slice(index, index + maxCharacters).join(""));
+        }
+        return chunks;
+      })
+      .join("\n");
+  }
+
   function sortProjectsByGroupLogos(projects, groupLogos) {
     const groupOrder = new Map(
       (Array.isArray(groupLogos) ? groupLogos : [])
         .map((item, index) => [item.group, index])
     );
-    return (Array.isArray(projects) ? projects : [])
+    const projectList = Array.isArray(projects) ? projects : [];
+    let nextGroupOrder = groupOrder.size;
+    projectList.forEach((project) => {
+      if (!groupOrder.has(project.group)) {
+        groupOrder.set(project.group, nextGroupOrder);
+        nextGroupOrder += 1;
+      }
+    });
+    function projectOrder(project) {
+      if (project.displayOrder === "" || project.displayOrder === null || project.displayOrder === undefined) {
+        return Number.MAX_SAFE_INTEGER;
+      }
+      const value = Number(project.displayOrder);
+      return Number.isFinite(value) ? value : Number.MAX_SAFE_INTEGER;
+    }
+    return projectList
       .map((project, index) => ({ project, index }))
       .sort((a, b) => {
-        const aOrder = groupOrder.has(a.project.group) ? groupOrder.get(a.project.group) : Number.MAX_SAFE_INTEGER;
-        const bOrder = groupOrder.has(b.project.group) ? groupOrder.get(b.project.group) : Number.MAX_SAFE_INTEGER;
-        return aOrder === bOrder ? a.index - b.index : aOrder - bOrder;
+        const groupDifference = groupOrder.get(a.project.group) - groupOrder.get(b.project.group);
+        if (groupDifference) return groupDifference;
+        const projectDifference = projectOrder(a.project) - projectOrder(b.project);
+        return projectDifference || a.index - b.index;
       })
       .map((item) => item.project);
   }
@@ -348,12 +383,18 @@
         list.className = "project-grid";
 
         group.projects.forEach((project) => {
-          const card = document.createElement("a");
+          const card = document.createElement(project.disableDetail ? "article" : "a");
           card.className = "project-card";
+          if (project.disableDetail) {
+            card.classList.add("is-disabled");
+            card.setAttribute("aria-disabled", "true");
+          }
           if (!project.image) {
             card.classList.add("has-empty-media");
           }
-          card.href = `project.html?work=${encodeURIComponent(project.id)}`;
+          if (!project.disableDetail) {
+            card.href = `project.html?work=${encodeURIComponent(project.id)}`;
+          }
           const video = project.hoverVideo
             ? `<video class="project-card-video" data-src="${escapeHtml(project.hoverVideo)}" muted playsinline loop preload="none"></video>`
             : "";
@@ -591,7 +632,7 @@
 
     if (project) {
       document.title = `${data.siteTitle} | ${project.title}`;
-      text("[data-detail-project-title]", project.title || "");
+      text("[data-detail-project-title]", formatDetailTitle(project.detailDisplayTitle || project.title || ""));
       text("[data-detail-category]", project.category || "");
       text("[data-detail-client]", project.client || "");
       const detailCopy = splitDetailDescription(project.detailDescription || project.summary || "");

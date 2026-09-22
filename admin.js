@@ -7,8 +7,68 @@
   const groupLogoList = document.querySelector("[data-group-logo-list]");
   const projectList = document.querySelector("[data-project-list]");
   const projectJump = document.querySelector("[data-project-jump]");
+  const sideProjectJump = document.querySelector("[data-side-project-jump]");
   const status = document.querySelector("[data-status]");
+  const panelStateKey = "portfolio-admin-collapsed-panels";
   let data = PortfolioData.getData();
+
+  function readPanelState() {
+    try {
+      return JSON.parse(window.localStorage.getItem(panelStateKey) || "{}");
+    } catch (error) {
+      return {};
+    }
+  }
+
+  function savePanelState(state) {
+    try {
+      window.localStorage.setItem(panelStateKey, JSON.stringify(state));
+    } catch (error) {
+      // The controls still work when browser storage is unavailable.
+    }
+  }
+
+  function setPanelCollapsed(panel, collapsed, persist = true) {
+    if (!panel) return;
+    const toggle = panel.querySelector("[data-panel-toggle]");
+    panel.classList.toggle("is-collapsed", collapsed);
+    if (toggle) {
+      toggle.textContent = collapsed ? "展开" : "收起";
+      toggle.setAttribute("aria-expanded", String(!collapsed));
+    }
+    if (persist && panel.id) {
+      const state = readPanelState();
+      state[panel.id] = collapsed;
+      savePanelState(state);
+    }
+  }
+
+  function setupCollapsiblePanels() {
+    const state = readPanelState();
+    const currentId = window.location.hash.slice(1);
+    document.querySelectorAll(".admin-panel").forEach((panel) => {
+      const head = panel.querySelector(":scope > .panel-head");
+      if (!head) return;
+      const toggle = document.createElement("button");
+      toggle.type = "button";
+      toggle.className = "panel-collapse-toggle";
+      toggle.dataset.panelToggle = "";
+      toggle.setAttribute("aria-controls", panel.id);
+      head.appendChild(toggle);
+      const savedState = Object.prototype.hasOwnProperty.call(state, panel.id) ? state[panel.id] : true;
+      setPanelCollapsed(panel, panel.id === currentId ? false : savedState, false);
+      toggle.addEventListener("click", () => {
+        setPanelCollapsed(panel, !panel.classList.contains("is-collapsed"));
+      });
+    });
+
+    document.querySelectorAll('.admin-nav a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", () => {
+        const panel = document.querySelector(link.getAttribute("href"));
+        setPanelCollapsed(panel, false);
+      });
+    });
+  }
 
   function setStatus(message) {
     status.textContent = message;
@@ -244,19 +304,33 @@
 
   function addGroupLogo(item = { group: "", image: "" }) {
     const row = document.querySelector("#group-logo-template").content.firstElementChild.cloneNode(true);
-    row.querySelector('[data-key="group"]').value = item.group || "";
+    const groupInput = row.querySelector('[data-key="group"]');
+    groupInput.value = item.group || "";
     row.querySelector('[data-key="image"]').value = item.image || "";
-    row.querySelector("[data-remove]").addEventListener("click", () => row.remove());
+    groupInput.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter") return;
+      event.preventDefault();
+      refreshProjectGroupSelects();
+      reorderProjectEditors();
+      setStatus("项目组顺序已更新，点击保存后生效。");
+    });
+    row.querySelector("[data-remove]").addEventListener("click", () => {
+      row.remove();
+      refreshProjectGroupSelects();
+      reorderProjectEditors();
+    });
     row.querySelector("[data-move-group-logo-up]").addEventListener("click", () => {
       const previous = row.previousElementSibling;
       if (!previous) return;
       groupLogoList.insertBefore(row, previous);
+      reorderProjectEditors();
       setStatus("项目组 Logo 顺序已调整，点击保存后生效。");
     });
     row.querySelector("[data-move-group-logo-down]").addEventListener("click", () => {
       const next = row.nextElementSibling;
       if (!next) return;
       groupLogoList.insertBefore(next, row);
+      reorderProjectEditors();
       setStatus("项目组 Logo 顺序已调整，点击保存后生效。");
     });
     row.querySelector("[data-group-logo-upload]").addEventListener("change", (event) => {
@@ -266,6 +340,8 @@
       }, { padToSquare: false });
     });
     groupLogoList.appendChild(row);
+    refreshProjectGroupSelects();
+    reorderProjectEditors();
   }
 
   function addDetailImageRow(editor, detailImage = "") {
@@ -321,6 +397,33 @@
     return Array.from(projectList.querySelectorAll(".project-editor"));
   }
 
+  function groupLogoNames() {
+    return Array.from(groupLogoList.querySelectorAll(".group-logo-row"))
+      .map((row) => row.querySelector('[data-key="group"]')?.value.trim() || "")
+      .filter((group, index, groups) => group && groups.indexOf(group) === index);
+  }
+
+  function populateProjectGroupSelect(select, selectedValue = select?.value || "") {
+    if (!select) return;
+    const groups = groupLogoNames();
+    if (selectedValue && !groups.includes(selectedValue)) groups.push(selectedValue);
+    select.innerHTML = '<option value="">选择项目组</option>';
+    groups.forEach((group) => {
+      const option = document.createElement("option");
+      option.value = group;
+      option.textContent = group;
+      select.appendChild(option);
+    });
+    select.value = selectedValue;
+  }
+
+  function refreshProjectGroupSelects() {
+    projectEditors().forEach((editor) => {
+      const select = editor.querySelector('[data-key="group"]');
+      populateProjectGroupSelect(select, select?.value || "");
+    });
+  }
+
   function projectLabel(editor, index) {
     const title = editor.querySelector('[data-key="title"]')?.value.trim();
     const id = editor.querySelector('[data-key="id"]')?.value.trim();
@@ -329,25 +432,74 @@
     return group ? `${index + 1}. ${name} / ${group}` : `${index + 1}. ${name}`;
   }
 
+  function projectEditorsInDisplayOrder(editors) {
+    const groupOrder = new Map();
+    groupLogoList.querySelectorAll(".group-logo-row").forEach((row, index) => {
+      const group = row.querySelector('[data-key="group"]')?.value.trim();
+      if (group && !groupOrder.has(group)) groupOrder.set(group, index);
+    });
+    let nextGroupOrder = groupOrder.size;
+    editors.forEach((editor) => {
+      const group = editor.querySelector('[data-key="group"]')?.value.trim() || "";
+      if (!groupOrder.has(group)) {
+        groupOrder.set(group, nextGroupOrder);
+        nextGroupOrder += 1;
+      }
+    });
+    function displayOrder(editor) {
+      const rawValue = editor.querySelector('[data-key="displayOrder"]')?.value.trim() || "";
+      if (!rawValue) return Number.MAX_SAFE_INTEGER;
+      const value = Number(rawValue);
+      return Number.isFinite(value) ? value : Number.MAX_SAFE_INTEGER;
+    }
+    return editors
+      .map((editor, domIndex) => ({ editor, domIndex }))
+      .sort((a, b) => {
+        const aGroup = a.editor.querySelector('[data-key="group"]')?.value.trim() || "";
+        const bGroup = b.editor.querySelector('[data-key="group"]')?.value.trim() || "";
+        const groupDifference = groupOrder.get(aGroup) - groupOrder.get(bGroup);
+        if (groupDifference) return groupDifference;
+        return displayOrder(a.editor) - displayOrder(b.editor) || a.domIndex - b.domIndex;
+      });
+  }
+
+  function reorderProjectEditors(selectedEditor) {
+    projectEditorsInDisplayOrder(projectEditors()).forEach(({ editor }) => {
+      projectList.appendChild(editor);
+    });
+    refreshProjectJump(selectedEditor);
+  }
+
   function refreshProjectJump(selectedEditor) {
-    if (!projectJump) return;
+    const jumpMenus = [projectJump, sideProjectJump].filter(Boolean);
+    if (!jumpMenus.length) return;
     const editors = projectEditors();
-    const selectedIndex = selectedEditor ? editors.indexOf(selectedEditor) : Number(projectJump.value);
-    projectJump.innerHTML = '<option value="">选择项目</option>';
-    editors.forEach((editor, index) => {
-      editor.dataset.projectIndex = String(index);
-      const option = document.createElement("option");
-      option.value = String(index);
-      option.textContent = projectLabel(editor, index);
-      projectJump.appendChild(option);
+    const currentValue = projectJump?.value || sideProjectJump?.value || "";
+    const selectedIndex = selectedEditor
+      ? editors.indexOf(selectedEditor)
+      : currentValue === "" ? -1 : Number(currentValue);
+    jumpMenus.forEach((menu) => {
+      menu.innerHTML = `<option value="">${menu === sideProjectJump ? "选择具体项目" : "选择项目"}</option>`;
+    });
+    projectEditorsInDisplayOrder(editors).forEach(({ editor, domIndex }, displayIndex) => {
+      editor.dataset.projectIndex = String(domIndex);
+      jumpMenus.forEach((menu) => {
+        const option = document.createElement("option");
+        option.value = String(domIndex);
+        option.textContent = projectLabel(editor, displayIndex);
+        menu.appendChild(option);
+      });
     });
     if (selectedIndex >= 0 && selectedIndex < editors.length) {
-      projectJump.value = String(selectedIndex);
+      jumpMenus.forEach((menu) => {
+        menu.value = String(selectedIndex);
+      });
     }
   }
 
   function scrollToProject(editor) {
     if (!editor) return;
+    setPanelCollapsed(document.querySelector("#projects-admin"), false);
     editor.scrollIntoView({ behavior: "smooth", block: "start" });
     editor.classList.add("is-targeted");
     window.setTimeout(() => editor.classList.remove("is-targeted"), 1200);
@@ -358,6 +510,8 @@
       id: `project-${Date.now()}`,
       group: "Haagen-Dazs",
       title: "New Project",
+      detailDisplayTitle: "",
+      displayOrder: "",
       category: "Visual Identity",
       client: "Client",
       year: "2026",
@@ -371,11 +525,13 @@
       detailTitleLight: data.projectsTitleLight,
       detailKicker: "PLUSH TOY",
       detailDescription: "",
-      showDetailText: true
+      showDetailText: true,
+      disableDetail: false
     };
     const item = { ...defaults, ...project };
     const editor = document.querySelector("#project-template").content.firstElementChild.cloneNode(true);
     editor.querySelector("[data-project-name]").textContent = item.title || item.id;
+    populateProjectGroupSelect(editor.querySelector('[data-key="group"]'), item.group || "");
     function addFieldPreview(key) {
       const field = editor.querySelector(`[data-key="${key}"]`);
       if (!field) return;
@@ -406,8 +562,24 @@
       field.addEventListener("input", () => {
         editor.querySelector("[data-project-name]").textContent =
           editor.querySelector('[data-key="title"]').value || editor.querySelector('[data-key="id"]').value || "项目";
-        refreshProjectJump(editor);
+        if (key !== "displayOrder" && key !== "group") {
+          refreshProjectJump(editor);
+        }
       });
+      if (key === "displayOrder") {
+        field.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter") return;
+          event.preventDefault();
+          reorderProjectEditors(editor);
+          setStatus("项目顺序已更新，点击保存后生效。");
+        });
+      }
+      if (key === "group") {
+        field.addEventListener("change", () => {
+          reorderProjectEditors(editor);
+          setStatus("项目组已更新，点击保存后生效。");
+        });
+      }
     });
     editor.querySelectorAll("[data-project-upload]").forEach((upload) => {
       upload.addEventListener("change", (event) => {
@@ -436,26 +608,12 @@
     });
     editor.querySelector("[data-remove-project]").addEventListener("click", () => {
       editor.remove();
-      refreshProjectJump();
-    });
-    editor.querySelector("[data-move-project-up]").addEventListener("click", () => {
-      const previous = editor.previousElementSibling;
-      if (!previous) return;
-      projectList.insertBefore(editor, previous);
-      refreshProjectJump(editor);
-      setStatus("项目顺序已调整，点击保存后生效。");
-    });
-    editor.querySelector("[data-move-project-down]").addEventListener("click", () => {
-      const next = editor.nextElementSibling;
-      if (!next) return;
-      projectList.insertBefore(next, editor);
-      refreshProjectJump(editor);
-      setStatus("项目顺序已调整，点击保存后生效。");
+      reorderProjectEditors();
     });
     addFieldPreview("image");
     addFieldPreview("detailBackground");
     projectList.appendChild(editor);
-    refreshProjectJump(editor);
+    reorderProjectEditors(editor);
     if (options.scroll) {
       scrollToProject(editor);
     }
@@ -480,6 +638,9 @@
     refreshProjectJump();
     if (projectJump) {
       projectJump.value = "";
+    }
+    if (sideProjectJump) {
+      sideProjectJump.value = "";
     }
   }
 
@@ -565,10 +726,16 @@
   document.querySelector("[data-add-group-logo]").addEventListener("click", () => addGroupLogo());
   document.querySelector("[data-add-project]").addEventListener("click", () => addProject(undefined, { scroll: true }));
 
-  projectJump?.addEventListener("change", () => {
-    const index = Number(projectJump.value);
+  function handleProjectJump(menu) {
+    if (!menu.value) return;
+    const index = Number(menu.value);
+    if (projectJump) projectJump.value = menu.value;
+    if (sideProjectJump) sideProjectJump.value = menu.value;
     scrollToProject(projectEditors()[index]);
-  });
+  }
+
+  projectJump?.addEventListener("change", () => handleProjectJump(projectJump));
+  sideProjectJump?.addEventListener("change", () => handleProjectJump(sideProjectJump));
 
   document.querySelectorAll("[data-global-upload]").forEach((upload) => {
     upload.addEventListener("change", (event) => {
@@ -600,5 +767,6 @@
     setStatus("已恢复默认内容。");
   });
 
+  setupCollapsiblePanels();
   render();
 })();

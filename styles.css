@@ -4,7 +4,8 @@
   --line: #111111;
   --wine: #6f1837;
   --hero-cell: 264px;
-  --small-font: "FZLTXHJW", Arial, Helvetica, sans-serif;
+  --latin-font: "DIN Next Regular", "DIN Next", "DINNext-Regular", Arial, Helvetica, sans-serif;
+  --small-font: "DIN Next Regular", "DIN Next", "DINNext-Regular", "FZLTXHJW", Arial, Helvetica, sans-serif;
 }
 
 @font-face {
@@ -25,7 +26,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--latin-font);
   letter-spacing: 0;
 }
 
@@ -563,6 +564,10 @@ body.contact-open {
   transform: translateY(0);
 }
 
+.project-card.is-disabled {
+  cursor: default;
+}
+
 .project-media {
   position: relative;
   display: block;
@@ -802,6 +807,7 @@ body.contact-open {
 .detail-title-block {
   align-self: start;
   min-width: 0;
+  container-type: inline-size;
 }
 
 .detail-eyebrow {
@@ -815,13 +821,16 @@ body.contact-open {
 
 .detail-intro h1 {
   margin: 0 0 32px;
-  max-width: 7.8ch;
+  max-width: 9em;
   font-size: clamp(42px, 4.3vw, 86px);
+  font-size: min(clamp(42px, 4.3vw, 86px), 11.111cqi);
   line-height: 0.98;
   font-weight: 900;
   letter-spacing: 0;
   text-transform: uppercase;
-  overflow-wrap: break-word;
+  white-space: pre-line;
+  overflow-wrap: normal;
+  word-break: keep-all;
 }
 
 .detail-credit {
@@ -1069,6 +1078,20 @@ body.detail-lightbox-open {
   padding: 0 16px;
 }
 
+.admin-side-project-jump {
+  width: 100%;
+  min-height: 36px;
+  border: 1.5px solid #111;
+  border-radius: 8px;
+  padding: 0 34px 0 14px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
 .admin-actions {
   display: grid;
   gap: 10px;
@@ -1108,11 +1131,46 @@ body.detail-lightbox-open {
   margin-bottom: 20px;
 }
 
+.admin-panel.is-collapsed > :not(.panel-head) {
+  display: none !important;
+}
+
+.admin-panel.is-collapsed > .panel-head {
+  margin-bottom: 0;
+}
+
+.panel-collapse-toggle {
+  flex: 0 0 auto;
+  min-width: 68px;
+}
+
 .project-order-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   justify-content: flex-end;
+}
+
+.project-priority-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.project-priority-control input {
+  width: 76px;
+  min-height: 36px;
+  border: 1.5px solid #111;
+  border-radius: 999px;
+  padding: 0 12px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  text-align: center;
 }
 
 .panel-head h1,
@@ -1777,6 +1835,10 @@ body.detail-lightbox-open {
 
   .project-order-actions {
     justify-content: flex-start;
+  }
+
+  .project-priority-control {
+    margin-left: 0;
   }
 
   .project-panel-actions select,

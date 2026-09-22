@@ -64,6 +64,39 @@ function extensionForType(type) {
   return ".bin";
 }
 
+function readCurrentPortfolioData() {
+  try {
+    const source = fs.readFileSync(path.join(root, "site-data.js"), "utf8");
+    const match = source.match(/^window\.PORTFOLIO_DEFAULT_DATA\s*=\s*([\s\S]*);\s*$/);
+    return match ? JSON.parse(match[1]) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function preserveExistingDescriptions(nextData) {
+  const currentData = readCurrentPortfolioData();
+  if (!currentData || !Array.isArray(currentData.projects) || !Array.isArray(nextData.projects)) {
+    return nextData;
+  }
+
+  const currentProjects = new Map(
+    currentData.projects.map((project) => [String(project.id), project])
+  );
+
+  nextData.projects = nextData.projects.map((project) => {
+    const currentProject = currentProjects.get(String(project.id));
+    const currentDescription = String(currentProject?.detailDescription || "").trim();
+    const nextDescription = String(project.detailDescription || "").trim();
+    if (currentDescription && !nextDescription) {
+      return { ...project, detailDescription: currentProject.detailDescription };
+    }
+    return project;
+  });
+
+  return nextData;
+}
+
 fs.mkdirSync(uploadDir, { recursive: true });
 fs.mkdirSync(mobileDir, { recursive: true });
 
@@ -126,7 +159,8 @@ const server = http.createServer((request, response) => {
         sendJson(response, 400, { error: "Invalid portfolio data." });
         return;
       }
-      const content = `window.PORTFOLIO_DEFAULT_DATA = ${JSON.stringify(body, null, 2)};\n`;
+      const protectedBody = preserveExistingDescriptions(body);
+      const content = `window.PORTFOLIO_DEFAULT_DATA = ${JSON.stringify(protectedBody, null, 2)};\n`;
       fs.writeFile(path.join(root, "site-data.js"), content, "utf8", (writeError) => {
         if (writeError) {
           sendJson(response, 500, { error: "Could not save portfolio data." });

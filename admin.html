@@ -19,6 +19,9 @@
           <a href="#hero-images">首页图片</a>
           <a href="#group-logos">项目组 Logo</a>
           <a href="#projects-admin">项目</a>
+          <select class="admin-side-project-jump" data-side-project-jump aria-label="快速选择项目">
+            <option value="">选择具体项目</option>
+          </select>
         </nav>
         <div class="admin-actions">
           <button type="submit" form="admin-form">保存</button>
@@ -221,9 +224,11 @@
       <article class="project-editor">
         <div class="project-editor-head">
           <h3 data-project-name>项目</h3>
+          <label class="project-priority-control">
+            展示顺序
+            <input data-key="displayOrder" type="number" min="1" step="1" placeholder="自动" />
+          </label>
           <div class="project-order-actions">
-            <button type="button" data-move-project-up>上移</button>
-            <button type="button" data-move-project-down>下移</button>
             <button type="button" data-remove-project>删除项目</button>
           </div>
         </div>
@@ -236,9 +241,15 @@
             项目标题
             <input data-key="title" type="text" />
           </label>
+          <label class="wide-field">
+            详情页大标题（可换行）
+            <textarea data-key="detailDisplayTitle" rows="3" placeholder="留空时使用项目标题；需要断行时按回车"></textarea>
+          </label>
           <label>
             项目组标签
-            <input data-key="group" type="text" placeholder="Haagen-Dazs" />
+            <select data-key="group">
+              <option value="">选择项目组</option>
+            </select>
           </label>
           <label>
             分类
@@ -310,6 +321,10 @@
           <label class="check-field">
             <input data-key="showDetailText" type="checkbox" />
             显示详情页文字层
+          </label>
+          <label class="check-field">
+            <input data-key="disableDetail" type="checkbox" />
+            关闭详情页点击
           </label>
         </div>
       </article>
