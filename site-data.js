@@ -349,7 +349,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
     {
       "displayOrder": "5",
       "id": "project-1790070000399",
-      "title": "丑八怪巧克力薯片",
+      "title": "丑八怪巧克力",
       "detailDisplayTitle": "",
       "group": "Haagen-Dazs",
       "category": "campaign",
@@ -357,7 +357,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "year": "2026",
       "date": "2026.5.21",
       "summary": "",
-      "image": "assets/uploads/1790070007844-jqek9hjxdo.jpg",
+      "image": "assets/uploads/1790096996126-g1z6ia22ljj.jpg",
       "hoverVideo": "",
       "detailBackground": "assets/uploads/1790084934150-jdk6x97rkd.jpg",
       "detailTitleStrong": "",
@@ -741,7 +741,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
           "width": "full"
         },
         {
-          "src": "assets/uploads/1788837916362-c0iqro48qg.jpg",
+          "src": "assets/uploads/1790096765454-fg96xpx407n.jpg",
           "width": "full"
         },
         {
