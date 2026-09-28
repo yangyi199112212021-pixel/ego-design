@@ -1,27 +1,12 @@
 (function () {
   const STORAGE_KEY = "portfolioEditableData";
-  const FIXED_GROUP_LOGOS = {
-    "Haagen-Dazs": "assets/mobile/1779591453864-w2xpnute03g-mobile.jpg",
-    YQSL: "assets/mobile/1779591325621-ra2mjajec4d-mobile.jpg",
-    budweiser: "assets/mobile/1779591544694-b0fgctcql29-mobile.jpg",
-    kfc: "assets/kfc-logo.png"
-  };
 
   function clone(value) {
     return JSON.parse(JSON.stringify(value));
   }
 
   function normalizeGroupLogos(groupLogos) {
-    const logos = Array.isArray(groupLogos) ? groupLogos.map((item) => ({ ...item })) : [];
-    Object.entries(FIXED_GROUP_LOGOS).forEach(([group, image]) => {
-      const existing = logos.find((item) => item.group === group);
-      if (existing) {
-        existing.image = image;
-      } else {
-        logos.push({ group, image });
-      }
-    });
-    return logos;
+    return Array.isArray(groupLogos) ? groupLogos.map((item) => ({ ...item })) : [];
   }
 
   function getData() {
@@ -321,13 +306,18 @@
       window.addEventListener("resize", renderHeroImages);
     }
 
+    const siteLogo = document.querySelector("[data-site-logo]");
+    if (siteLogo && data.logoUrl) {
+      siteLogo.src = data.logoUrl;
+    }
+
     const logo = document.querySelector("[data-logo]");
-    if (logo) {
+    if (logo && data.logoUrl) {
       logo.src = data.logoUrl;
     }
 
     const detailLogo = document.querySelector("[data-detail-logo]");
-    if (detailLogo) {
+    if (detailLogo && data.logoUrl) {
       detailLogo.src = data.logoUrl;
     }
 
@@ -414,6 +404,10 @@
             </span>
             <span class="project-summary">${escapeHtml(project.summary || project.client || "")}</span>
           `;
+          const projectPill = card.querySelector(".project-pill");
+          if (projectPill) {
+            projectPill.style.backgroundColor = project.pillColor || "#ffffff";
+          }
           const videoNode = card.querySelector("video");
           if (videoNode) {
             card.addEventListener("mouseenter", () => {
@@ -446,6 +440,9 @@
     if (!header) return;
     const data = getData();
     const groupImages = Object.fromEntries((data.groupLogos || []).map((item) => [item.group, item.image]));
+    const groupHeaderColors = Object.fromEntries(
+      (data.groupLogos || []).map((item) => [item.group, item.headerColor || "#ffffff"])
+    );
 
     function syncHeader() {
       header.classList.toggle("is-scrolled", window.scrollY > 80);
@@ -460,6 +457,7 @@
       });
       const visibleLabel = header.classList.contains("is-scrolled") && label ? label : "";
       const imageSrc = groupImages[visibleLabel];
+      header.style.setProperty("--group-header-color", groupHeaderColors[visibleLabel] || "#ffffff");
       if (activeGroup) {
         activeGroup.textContent = imageSrc ? "" : visibleLabel;
       }

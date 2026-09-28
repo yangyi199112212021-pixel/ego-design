@@ -2,7 +2,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
   "siteTitle": "",
   "projectsTitleStrong": "",
   "projectsTitleLight": "",
-  "logoUrl": "",
+  "logoUrl": "assets/uploads/1790590224584-0rika287fyhi.png",
   "navPills": [
     {
       "label": "info",
@@ -118,23 +118,28 @@ window.PORTFOLIO_DEFAULT_DATA = {
   "groupLogos": [
     {
       "group": "Haagen-Dazs",
-      "image": "assets/mobile/1779591453864-w2xpnute03g-mobile.jpg"
+      "image": "assets/uploads/1790588959851-gu0ih6fpev5.png",
+      "headerColor": "#d186a6"
     },
     {
       "group": "YQSL",
-      "image": "assets/mobile/1779591325621-ra2mjajec4d-mobile.jpg"
+      "image": "assets/uploads/1790590638865-nhp0zcc72lf.png",
+      "headerColor": "#8bc776"
     },
     {
       "group": "kfc",
-      "image": "assets/kfc-logo.png"
+      "image": "assets/uploads/1790590965167-tp2rl6p1aod.png",
+      "headerColor": "#d2e1ff"
     },
     {
       "group": "budweiser",
-      "image": "assets/mobile/1779591544694-b0fgctcql29-mobile.jpg"
+      "image": "assets/mobile/1779591544694-b0fgctcql29-mobile.jpg",
+      "headerColor": "#ffffff"
     },
     {
       "group": "other",
-      "image": "assets/uploads/1790087253538-zyz1ebo4jnh.png"
+      "image": "assets/uploads/1790087253538-zyz1ebo4jnh.png",
+      "headerColor": "#ffffff"
     }
   ],
   "projects": [
@@ -145,6 +150,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "哈根达斯夏季巧克力\n营销视觉系统",
       "group": "Haagen-Dazs",
       "category": "campaign",
+      "pillColor": "#de82a7",
       "client": "Haagen-Dazs",
       "year": "2026",
       "date": "2026.5.21",
@@ -216,6 +222,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "Haagendazs \n门店秋季新品上市",
       "group": "Haagen-Dazs",
       "category": "poster",
+      "pillColor": "#de82a7",
       "client": "Haagen-Dazs",
       "year": "",
       "date": "2026",
@@ -275,6 +282,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "Haagendazs\n端午礼盒",
       "group": "Haagen-Dazs",
       "category": "package",
+      "pillColor": "#de82a7",
       "client": "Haagen-Dazs",
       "year": "",
       "date": "2026",
@@ -318,6 +326,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "哈根达斯\n春日踏青季渠道营销",
       "group": "Haagen-Dazs",
       "category": "package,poster",
+      "pillColor": "#ffffff",
       "client": "Haagen-Dazs",
       "year": "2026",
       "date": "2026.5.21",
@@ -353,6 +362,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "",
       "group": "Haagen-Dazs",
       "category": "campaign",
+      "pillColor": "#ffffff",
       "client": "丑八怪巧克力",
       "year": "2026",
       "date": "2026.5.21",
@@ -380,6 +390,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "好运椰\nx\n元气森林",
       "group": "Haagen-Dazs",
       "category": "Co-branding",
+      "pillColor": "#ffffff",
       "client": "元气森林",
       "year": "2026",
       "date": "2023.5.21",
@@ -435,6 +446,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "元气森林\n2023年品牌升级",
       "group": "YQSL",
       "category": "Visual Identity",
+      "pillColor": "#91d07b",
       "client": "元气森林",
       "year": "2023",
       "date": "2023",
@@ -510,6 +522,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "",
       "group": "YQSL",
       "category": "campaign",
+      "pillColor": "#92d17c",
       "client": "元气森林",
       "year": "2023",
       "date": "2023.5.21",
@@ -557,6 +570,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "",
       "group": "YQSL",
       "category": "Visual Identity,package",
+      "pillColor": "#91d07b",
       "client": "元气森林",
       "year": "",
       "date": "2026",
@@ -622,12 +636,13 @@ window.PORTFOLIO_DEFAULT_DATA = {
       ]
     },
     {
-      "displayOrder": "10",
+      "displayOrder": "8",
       "id": "project-1790066134554",
       "title": "元气森林xPOPMART",
       "detailDisplayTitle": "",
       "group": "kfc",
       "category": "Co-marketing",
+      "pillColor": "#ffffff",
       "client": "元气森林",
       "year": "2026",
       "date": "2026.5.21",
@@ -669,12 +684,13 @@ window.PORTFOLIO_DEFAULT_DATA = {
       ]
     },
     {
-      "displayOrder": "",
+      "displayOrder": "9",
       "id": "project-1781075975507",
       "title": "KFC x 最终幻想",
       "detailDisplayTitle": "",
       "group": "kfc",
       "category": "campaign,Co-branding",
+      "pillColor": "#ffffff",
       "client": "KFC",
       "year": "2026",
       "date": "2026.5.21",
@@ -700,12 +716,13 @@ window.PORTFOLIO_DEFAULT_DATA = {
       ]
     },
     {
-      "displayOrder": "",
+      "displayOrder": "10",
       "id": "2",
       "title": "肯德基潮汉堡系列",
       "detailDisplayTitle": "",
       "group": "kfc",
       "category": "campaign",
+      "pillColor": "#ffffff",
       "client": "KFC",
       "year": "2026",
       "date": "2026.5.21",
@@ -775,12 +792,13 @@ window.PORTFOLIO_DEFAULT_DATA = {
       ]
     },
     {
-      "displayOrder": "",
+      "displayOrder": "11",
       "id": "7",
       "title": "百威新年红运瓶",
       "detailDisplayTitle": "",
       "group": "budweiser",
       "category": "kv,package",
+      "pillColor": "#ffffff",
       "client": "budweiser",
       "year": "2026",
       "date": "2026.5.21",
@@ -822,12 +840,13 @@ window.PORTFOLIO_DEFAULT_DATA = {
       ]
     },
     {
-      "displayOrder": "",
+      "displayOrder": "12",
       "id": "10",
       "title": "百威 x ucca",
       "detailDisplayTitle": "",
       "group": "budweiser",
       "category": "gwp,Co-branding",
+      "pillColor": "#ffffff",
       "client": "budweiser",
       "year": "",
       "date": "2026",
@@ -877,12 +896,13 @@ window.PORTFOLIO_DEFAULT_DATA = {
       ]
     },
     {
-      "displayOrder": "",
+      "displayOrder": "13",
       "id": "3",
       "title": "福佳果味系列视觉系统",
       "detailDisplayTitle": "",
       "group": "budweiser",
       "category": "Visual Identity,package,kv,socal video",
+      "pillColor": "#ffffff",
       "client": "budweiser",
       "year": "2026",
       "date": "2026.5.21",
@@ -940,12 +960,73 @@ window.PORTFOLIO_DEFAULT_DATA = {
       ]
     },
     {
+      "displayOrder": "14",
+      "id": "project-1790585591555",
+      "title": "瑞新巴西主题季",
+      "detailDisplayTitle": "",
+      "group": "other",
+      "category": "poster",
+      "pillColor": "#ffffff",
+      "client": "Client",
+      "year": "2026",
+      "date": "2026.5.21",
+      "summary": "",
+      "image": "assets/uploads/1790585606493-1tt6jld22aai.jpg",
+      "hoverVideo": "",
+      "detailBackground": "assets/uploads/1790585704677-rqs8wcn6qgh.jpg",
+      "detailTitleStrong": "",
+      "detailTitleLight": "",
+      "detailKicker": "PLUSH TOY",
+      "detailDescription": "",
+      "showDetailText": true,
+      "disableDetail": false,
+      "detailImages": [
+        {
+          "src": "assets/uploads/1790587381018-8ka0vhkgzpn.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1790587257767-288rn1n70wh.png",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1790587260157-gl5ovbjuo95.png",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1790585704677-rqs8wcn6qgh.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1790585706927-ndqc2j5w3h8.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1790585710899-t7qmsqxdrd.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1790585715055-tve4s75708.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1790585721600-nc6buvea9.jpg",
+          "width": "third"
+        },
+        {
+          "src": "assets/uploads/1790585804823-4izc8byon6.jpg",
+          "width": "third"
+        }
+      ]
+    },
+    {
       "displayOrder": "",
       "id": "11",
       "title": "瑞幸咖啡山茶花系列",
       "detailDisplayTitle": "",
       "group": "other",
       "category": "poster",
+      "pillColor": "#ffffff",
       "client": "瑞幸",
       "year": "2026",
       "date": "2026.5.21",
@@ -1001,6 +1082,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "",
       "group": "other",
       "category": "gwp",
+      "pillColor": "#ffffff",
       "client": "fujifilm",
       "year": "2025",
       "date": "2026.5.21",
@@ -1048,6 +1130,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "",
       "group": "other",
       "category": "book",
+      "pillColor": "#ffffff",
       "client": "fujifilm",
       "year": "2025",
       "date": "2026.5.21",
@@ -1075,6 +1158,7 @@ window.PORTFOLIO_DEFAULT_DATA = {
       "detailDisplayTitle": "",
       "group": "other",
       "category": "package",
+      "pillColor": "#ffffff",
       "client": "show",
       "year": "2026",
       "date": "2026.5.21",

@@ -302,11 +302,12 @@
     heroImageList.appendChild(editor);
   }
 
-  function addGroupLogo(item = { group: "", image: "" }) {
+  function addGroupLogo(item = { group: "", image: "", headerColor: "#ffffff" }) {
     const row = document.querySelector("#group-logo-template").content.firstElementChild.cloneNode(true);
     const groupInput = row.querySelector('[data-key="group"]');
     groupInput.value = item.group || "";
     row.querySelector('[data-key="image"]').value = item.image || "";
+    row.querySelector('[data-key="headerColor"]').value = item.headerColor || "#ffffff";
     groupInput.addEventListener("keydown", (event) => {
       if (event.key !== "Enter") return;
       event.preventDefault();
@@ -513,6 +514,7 @@
       detailDisplayTitle: "",
       displayOrder: "",
       category: "Visual Identity",
+      pillColor: "#ffffff",
       client: "Client",
       year: "2026",
       date: "2026.5.21",
@@ -670,7 +672,8 @@
       })),
       groupLogos: Array.from(groupLogoList.querySelectorAll(".group-logo-row")).map((row) => ({
         group: row.querySelector('[data-key="group"]').value.trim(),
-        image: row.querySelector('[data-key="image"]').value.trim()
+        image: row.querySelector('[data-key="image"]').value.trim(),
+        headerColor: row.querySelector('[data-key="headerColor"]').value
       })),
       projects: Array.from(projectList.querySelectorAll(".project-editor")).map((editor) => {
         const project = {};

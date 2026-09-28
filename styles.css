@@ -161,7 +161,7 @@ a {
   position: fixed;
   inset: 0 0 auto 0;
   padding: 24px 38px;
-  background: #fff;
+  background: var(--group-header-color, #fff);
   box-shadow: 0 1px 0 #111;
 }
 
@@ -1241,6 +1241,11 @@ body.detail-lightbox-open {
   line-height: 1.35;
 }
 
+.field-grid input[type="color"] {
+  padding: 4px;
+  cursor: pointer;
+}
+
 .admin-field-thumb,
 .admin-thumb {
   display: grid;
@@ -1353,7 +1358,20 @@ body.detail-lightbox-open {
 }
 
 .group-logo-row {
-  grid-template-columns: 1fr 1.5fr 260px auto;
+  grid-template-columns: 1fr 1.5fr 130px 260px auto;
+}
+
+.group-logo-color {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.group-logo-color input[type="color"] {
+  min-height: 42px;
+  padding: 4px;
+  cursor: pointer;
 }
 
 .row-order-actions {
