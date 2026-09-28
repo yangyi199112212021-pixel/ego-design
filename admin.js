@@ -305,9 +305,22 @@
   function addGroupLogo(item = { group: "", image: "", headerColor: "#ffffff" }) {
     const row = document.querySelector("#group-logo-template").content.firstElementChild.cloneNode(true);
     const groupInput = row.querySelector('[data-key="group"]');
+    const headerColorInput = row.querySelector('[data-key="headerColor"]');
     groupInput.value = item.group || "";
     row.querySelector('[data-key="image"]').value = item.image || "";
-    row.querySelector('[data-key="headerColor"]').value = item.headerColor || "#ffffff";
+    headerColorInput.value = item.headerColor || "#ffffff";
+    let previousHeaderColor = headerColorInput.value;
+    headerColorInput.addEventListener("input", () => {
+      const group = groupInput.value.trim();
+      projectEditors().forEach((editor) => {
+        const projectGroup = editor.querySelector('[data-key="group"]')?.value.trim();
+        const pillColor = editor.querySelector('[data-key="pillColor"]');
+        if (projectGroup === group && pillColor?.value.toLowerCase() === previousHeaderColor.toLowerCase()) {
+          pillColor.value = headerColorInput.value;
+        }
+      });
+      previousHeaderColor = headerColorInput.value;
+    });
     groupInput.addEventListener("keydown", (event) => {
       if (event.key !== "Enter") return;
       event.preventDefault();
@@ -402,6 +415,13 @@
     return Array.from(groupLogoList.querySelectorAll(".group-logo-row"))
       .map((row) => row.querySelector('[data-key="group"]')?.value.trim() || "")
       .filter((group, index, groups) => group && groups.indexOf(group) === index);
+  }
+
+  function groupHeaderColor(group) {
+    const matchingRow = Array.from(groupLogoList.querySelectorAll(".group-logo-row")).find(
+      (row) => row.querySelector('[data-key="group"]')?.value.trim() === group
+    );
+    return matchingRow?.querySelector('[data-key="headerColor"]')?.value || "#ffffff";
   }
 
   function populateProjectGroupSelect(select, selectedValue = select?.value || "") {
@@ -531,6 +551,9 @@
       disableDetail: false
     };
     const item = { ...defaults, ...project };
+    if (!project || !project.pillColor) {
+      item.pillColor = groupHeaderColor(item.group);
+    }
     const editor = document.querySelector("#project-template").content.firstElementChild.cloneNode(true);
     editor.querySelector("[data-project-name]").textContent = item.title || item.id;
     populateProjectGroupSelect(editor.querySelector('[data-key="group"]'), item.group || "");
@@ -578,8 +601,10 @@
       }
       if (key === "group") {
         field.addEventListener("change", () => {
+          const pillColor = editor.querySelector('[data-key="pillColor"]');
+          if (pillColor) pillColor.value = groupHeaderColor(field.value.trim());
           reorderProjectEditors(editor);
-          setStatus("项目组已更新，点击保存后生效。");
+          setStatus("项目组和默认胶囊底色已更新，仍可单独修改颜色；点击保存后生效。");
         });
       }
     });
